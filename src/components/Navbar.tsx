@@ -35,14 +35,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo - más grande */}
         <a href="#hero" className="flex items-center gap-3">
           <Image
             src={LOGO_URL}
             alt="Rain Forest Experiences CR"
-            width={180}
-            height={60}
-            className="h-12 w-auto object-contain"
+            width={260}
+            height={80}
+            className="h-16 sm:h-20 w-auto object-contain"
             priority
           />
         </a>

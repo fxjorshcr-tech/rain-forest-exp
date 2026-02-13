@@ -1,12 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
-import { motion, useInView } from "framer-motion";
 
 export default function ContactForm() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,14 +25,9 @@ export default function ContactForm() {
 
   return (
     <section id="contact" className="py-24 bg-gray-50">
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="text-forest-600 font-semibold text-sm tracking-[0.2em] uppercase">
             Get In Touch
           </span>
@@ -49,16 +41,11 @@ export default function ContactForm() {
             Ready to explore? Send us a message and we&apos;ll help you plan the
             perfect rainforest experience.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 space-y-8"
-          >
+          <div className="lg:col-span-2">
             <div className="bg-forest-900 rounded-2xl p-8 text-white">
               <h3 className="text-xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-6">
@@ -116,15 +103,10 @@ export default function ContactForm() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-3"
-          >
+          <div className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
               className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 space-y-6"
@@ -272,7 +254,7 @@ export default function ContactForm() {
                 Your message will be sent via WhatsApp for a faster response.
               </p>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

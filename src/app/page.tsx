@@ -4,6 +4,7 @@ import Tours from "@/components/Tours";
 import Reviews from "@/components/Reviews";
 import LaFortuna from "@/components/LaFortuna";
 import About from "@/components/About";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <LaFortuna />
       <About />
       <Reviews />
+      <ContactForm />
       <Footer />
       <WhatsAppButton />
     </>

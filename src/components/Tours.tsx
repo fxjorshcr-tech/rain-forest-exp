@@ -1,9 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import { Clock, Users, Star, ChevronRight } from "lucide-react";
-import { motion, useInView } from "framer-motion";
 
 const tours = [
   {
@@ -88,18 +86,9 @@ const tours = [
   },
 ];
 
-function TourCard({ tour, index }: { tour: (typeof tours)[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
+function TourCard({ tour }: { tour: (typeof tours)[0] }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-    >
+    <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
       <div className="relative h-64 overflow-hidden">
         <Image
           src={tour.image}
@@ -146,7 +135,7 @@ function TourCard({ tour, index }: { tour: (typeof tours)[0]; index: number }) {
           />
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -174,8 +163,8 @@ export default function Tours() {
 
         {/* Tour cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {tours.map((tour, i) => (
-            <TourCard key={tour.title} tour={tour} index={i} />
+          {tours.map((tour) => (
+            <TourCard key={tour.title} tour={tour} />
           ))}
         </div>
       </div>

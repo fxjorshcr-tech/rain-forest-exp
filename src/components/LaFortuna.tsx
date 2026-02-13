@@ -1,9 +1,5 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
 import { TreePine, Mountain, Droplets, Bird } from "lucide-react";
-import { motion, useInView } from "framer-motion";
 
 const features = [
   {
@@ -33,9 +29,6 @@ const features = [
 ];
 
 export default function LaFortuna() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="fortuna" className="relative py-24 overflow-hidden">
       {/* Background image */}
@@ -50,17 +43,9 @@ export default function LaFortuna() {
         <div className="absolute inset-0 bg-dark-900/80 backdrop-blur-[2px]" />
       </div>
 
-      <div
-        ref={ref}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase">
             Our Paradise
           </span>
@@ -77,18 +62,15 @@ export default function LaFortuna() {
             of Costa Rica&apos;s most spectacular destinations and a true
             paradise for nature lovers and adventurers.
           </p>
-        </motion.div>
+        </div>
 
         {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, i) => {
+          {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
                 className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:bg-white/15 hover:border-forest-400/30 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-xl bg-forest-600/30 flex items-center justify-center mb-5 group-hover:bg-forest-600/50 transition-colors">
@@ -100,18 +82,13 @@ export default function LaFortuna() {
                 <p className="text-white/70 text-sm leading-relaxed">
                   {feature.description}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
-        >
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: "500+", label: "Wildlife Species" },
             { value: "70m", label: "Waterfall Height" },
@@ -125,7 +102,7 @@ export default function LaFortuna() {
               <div className="text-white/60 text-sm mt-1">{stat.label}</div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

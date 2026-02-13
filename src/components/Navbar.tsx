@@ -35,14 +35,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo - más grande */}
-        <a href="#hero" className="flex items-center gap-3">
+        {/* Logo */}
+        <a href="#hero" className="flex-shrink-0">
           <Image
             src={LOGO_URL}
             alt="Rain Forest Experiences CR"
             width={260}
             height={80}
-            className="h-16 sm:h-20 w-auto object-contain"
+            className="h-12 sm:h-16 md:h-20 w-auto max-w-[180px] sm:max-w-[220px] md:max-w-none object-contain"
             priority
           />
         </a>
@@ -71,7 +71,7 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-2 flex-shrink-0"
           aria-label="Toggle menu"
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -79,12 +79,8 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="bg-dark-900/98 backdrop-blur-lg px-4 py-6 space-y-4">
+      {menuOpen && (
+        <div className="md:hidden bg-dark-900/98 backdrop-blur-lg px-4 py-6 space-y-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -104,7 +100,7 @@ export default function Navbar() {
             Book Now
           </a>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

@@ -1,9 +1,5 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
 import { Award, Heart, Shield, Leaf } from "lucide-react";
-import { motion, useInView } from "framer-motion";
 
 const highlights = [
   {
@@ -29,23 +25,12 @@ const highlights = [
 ];
 
 export default function About() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="about" className="py-24 bg-forest-100">
-      <div
-        ref={ref}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image side */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
+          <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
               <Image
                 src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/WhatsApp%20Image%202026-01-14%20at%209.02.46%20AM.jpeg"
@@ -64,14 +49,10 @@ export default function About() {
               <div className="text-3xl font-bold text-forest-700">10+</div>
               <div className="text-sm text-gray-600">Years of Experience</div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Content side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
+          <div>
             <span className="text-forest-600 font-semibold text-sm tracking-[0.2em] uppercase">
               Meet Your Guide
             </span>
@@ -131,7 +112,7 @@ export default function About() {
                 );
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -7,12 +7,13 @@ import {
   Instagram,
   Facebook,
 } from "lucide-react";
-import { tours } from "@/data/tours";
+import { getTours } from "@/data/tours";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
-export default function Footer() {
+export default async function Footer() {
+  const tours = await getTours();
   return (
     <footer className="bg-dark-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

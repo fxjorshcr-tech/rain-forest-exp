@@ -11,11 +11,12 @@ import {
   Star,
   AlertCircle,
 } from "lucide-react";
-import { tours, getTourBySlug } from "@/data/tours";
+import { getTours, getTourBySlug } from "@/data/tours";
 import BookingForm from "@/components/BookingForm";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const tours = await getTours();
   return tours.map((tour) => ({ slug: tour.slug }));
 }
 
@@ -25,7 +26,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const tour = getTourBySlug(slug);
+  const tour = await getTourBySlug(slug);
   if (!tour) return { title: "Tour Not Found" };
   return {
     title: `${tour.title} | Rain Forest Experiences CR`,
@@ -39,10 +40,11 @@ export default async function TourPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const tour = getTourBySlug(slug);
+  const tour = await getTourBySlug(slug);
   if (!tour) notFound();
 
-  const otherTours = tours.filter((t) => t.slug !== tour.slug).slice(0, 3);
+  const allTours = await getTours();
+  const otherTours = allTours.filter((t) => t.slug !== tour.slug).slice(0, 3);
 
   return (
     <main>

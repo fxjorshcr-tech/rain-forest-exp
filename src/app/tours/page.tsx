@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, Star, ChevronRight } from "lucide-react";
-import { tours } from "@/data/tours";
+import { getTours } from "@/data/tours";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     "Explore our nature tours in La Fortuna, Costa Rica. Night walks, sloth tours, volcano hikes, hanging bridges, birdwatching, Rio Celeste and more.",
 };
 
-export default function ToursPage() {
+export default async function ToursPage() {
+  const tours = await getTours();
   return (
     <main>
       {/* Hero - compact */}

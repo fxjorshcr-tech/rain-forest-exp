@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, Star, ChevronRight } from "lucide-react";
-import { tours } from "@/data/tours";
+import { getTours } from "@/data/tours";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,11 +10,12 @@ export const metadata: Metadata = {
     "Explore our nature tours in La Fortuna, Costa Rica. Night walks, sloth tours, volcano hikes, hanging bridges, birdwatching, Rio Celeste and more.",
 };
 
-export default function ToursPage() {
+export default async function ToursPage() {
+  const tours = await getTours();
   return (
     <main>
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      {/* Hero - compact */}
+      <section className="relative h-[40vh] min-h-[320px] flex items-end overflow-hidden">
         <Image
           src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-mountains-sky-costa-rica.webp"
           alt="Tours in La Fortuna"
@@ -23,25 +24,25 @@ export default function ToursPage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-center px-4">
-          <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase block mb-3">
-            Our Experiences
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
-            Explore Our{" "}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            Our{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
               Tours
             </span>
           </h1>
-          <p className="mt-4 text-white/80 max-w-2xl mx-auto text-lg">
-            Personalized adventures with certified local guides in La Fortuna, Costa Rica
+          <p className="mt-3 text-white/80 max-w-2xl text-base sm:text-lg">
+            Personalized adventures with a certified local guide born and raised
+            in La Fortuna. Small groups, professional equipment, and over 10
+            years of experience sharing the magic of the Arenal rainforest.
+            Pick your favorite and let&apos;s go.
           </p>
         </div>
       </section>
 
       {/* Tours Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {tours.map((tour) => (
@@ -87,7 +88,7 @@ export default function ToursPage() {
                     </span>
                   </div>
                   <span className="inline-flex items-center gap-1 text-forest-700 font-semibold text-sm group-hover:gap-2 transition-all">
-                    View Details
+                    View Details & Book
                     <ChevronRight size={16} />
                   </span>
                 </div>

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, Star, ChevronRight } from "lucide-react";
-import { tours } from "@/data/tours";
+import { getTours } from "@/data/tours";
 
-export default function Tours() {
+export default async function Tours() {
+  const tours = await getTours();
   return (
     <section id="tours" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

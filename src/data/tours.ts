@@ -1,3 +1,5 @@
+import { supabase } from "@/lib/supabase";
+
 export interface Tour {
   slug: string;
   title: string;
@@ -19,9 +21,54 @@ export interface Tour {
   note: string;
 }
 
+interface TourRow {
+  slug: string;
+  title: string;
+  short_title: string;
+  description: string;
+  long_description: string;
+  price: number;
+  duration: string;
+  start_times: string[];
+  schedule: string;
+  difficulty: "Easy" | "Moderate" | "Challenging";
+  min_people: number;
+  max_group: string;
+  image: string;
+  gallery: string[];
+  includes: string[];
+  what_to_bring: string[];
+  highlights: string[];
+  note: string;
+}
+
+function mapRow(row: TourRow): Tour {
+  return {
+    slug: row.slug,
+    title: row.title,
+    shortTitle: row.short_title,
+    description: row.description,
+    longDescription: row.long_description,
+    price: row.price,
+    duration: row.duration,
+    startTimes: row.start_times,
+    schedule: row.schedule,
+    difficulty: row.difficulty,
+    minPeople: row.min_people,
+    maxGroup: row.max_group,
+    image: row.image,
+    gallery: row.gallery,
+    includes: row.includes,
+    whatToBring: row.what_to_bring,
+    highlights: row.highlights,
+    note: row.note,
+  };
+}
+
 const SUPABASE =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public";
 
+// Static fallback data (used when Supabase is unavailable or for client components)
 export const tours: Tour[] = [
   {
     slug: "night-walk",
@@ -323,6 +370,34 @@ export const tours: Tour[] = [
   },
 ];
 
-export function getTourBySlug(slug: string): Tour | undefined {
-  return tours.find((t) => t.slug === slug);
+// Async functions that fetch from Supabase (with static fallback)
+export async function getTours(): Promise<Tour[]> {
+  try {
+    const { data, error } = await supabase
+      .from("rain_forest_exp_tours")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order");
+
+    if (error || !data || data.length === 0) return tours;
+    return data.map(mapRow);
+  } catch {
+    return tours;
+  }
+}
+
+export async function getTourBySlug(slug: string): Promise<Tour | undefined> {
+  try {
+    const { data, error } = await supabase
+      .from("rain_forest_exp_tours")
+      .select("*")
+      .eq("slug", slug)
+      .eq("active", true)
+      .single();
+
+    if (error || !data) return tours.find((t) => t.slug === slug);
+    return mapRow(data);
+  } catch {
+    return tours.find((t) => t.slug === slug);
+  }
 }

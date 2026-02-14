@@ -372,6 +372,7 @@ export const tours: Tour[] = [
 
 // Async functions that fetch from Supabase (with static fallback)
 export async function getTours(): Promise<Tour[]> {
+  if (!supabase) return tours;
   try {
     const { data, error } = await supabase
       .from("rain_forest_exp_tours")
@@ -387,6 +388,7 @@ export async function getTours(): Promise<Tour[]> {
 }
 
 export async function getTourBySlug(slug: string): Promise<Tour | undefined> {
+  if (!supabase) return tours.find((t) => t.slug === slug);
   try {
     const { data, error } = await supabase
       .from("rain_forest_exp_tours")

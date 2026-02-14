@@ -234,37 +234,62 @@ export default async function TourPage({
       </section>
 
       {/* Other tours */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-forest-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">
-            You Might Also Like
-          </h2>
+          <div className="text-center mb-12">
+            <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase">
+              More Adventures
+            </span>
+            <h2 className="mt-2 text-3xl font-bold text-white">
+              You Might Also Like
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {otherTours.map((t) => (
               <Link
                 key={t.slug}
                 href={`/tours/${t.slug}`}
-                className="group bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300"
+                className="group relative rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-forest-400/10 transition-all duration-500 hover:-translate-y-1"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
                   <Image
                     src={t.image}
                     alt={t.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="bg-forest-700/90 text-white text-sm font-bold px-3 py-1 rounded-full">
-                      ${t.price}
-                    </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                    <Star size={13} className="text-gold-500 fill-gold-500" />
+                    <span className="text-xs font-bold text-gray-800">5.0</span>
                   </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 group-hover:text-forest-700 transition-colors">
-                    {t.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-1">{t.duration}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-forest-600/90 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                        From ${t.price}
+                      </span>
+                      <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                        {t.difficulty}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-white group-hover:text-forest-300 transition-colors">
+                      {t.title}
+                    </h3>
+                    <p className="text-white/60 text-sm mt-1 line-clamp-2">
+                      {t.description}
+                    </p>
+                    <div className="mt-3 flex items-center gap-4 text-xs text-white/50">
+                      <span className="flex items-center gap-1">
+                        <Clock size={13} />
+                        {t.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Users size={13} />
+                        {t.maxGroup}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}

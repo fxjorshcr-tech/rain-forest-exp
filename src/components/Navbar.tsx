@@ -2,29 +2,34 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
 const navLinks = [
-  { label: "Home", href: "#hero" },
-  { label: "Tours", href: "#tours" },
-  { label: "La Fortuna", href: "#fortuna" },
-  { label: "About", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Tours", href: "/tours" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <nav
@@ -36,7 +41,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0">
           <Image
             src={LOGO_URL}
             alt="Rain Forest Experiences CR"
@@ -45,18 +50,20 @@ export default function Navbar() {
             className="h-12 sm:h-16 md:h-20 w-auto max-w-[180px] sm:max-w-[220px] md:max-w-none object-contain"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="text-white/90 hover:text-forest-400 transition-colors text-sm font-medium tracking-wide uppercase"
+              className={`hover:text-forest-400 transition-colors text-sm font-medium tracking-wide uppercase ${
+                pathname === link.href ? "text-forest-400" : "text-white/90"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <a
             href="https://wa.me/50688888888"
@@ -82,14 +89,17 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-dark-900/98 backdrop-blur-lg px-4 py-6 space-y-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block text-white/90 hover:text-forest-400 transition-colors text-base font-medium py-2"
+              className={`block transition-colors text-base font-medium py-2 ${
+                pathname === link.href
+                  ? "text-forest-400"
+                  : "text-white/90 hover:text-forest-400"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <a
             href="https://wa.me/50688888888"

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   Phone,
@@ -6,24 +7,27 @@ import {
   Instagram,
   Facebook,
 } from "lucide-react";
+import { tours } from "@/data/tours";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-dark-900 text-white">
+    <footer className="bg-dark-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Image
-              src={LOGO_URL}
-              alt="Rain Forest Experiences CR"
-              width={180}
-              height={60}
-              className="h-14 w-auto object-contain mb-4"
-            />
+            <Link href="/">
+              <Image
+                src={LOGO_URL}
+                alt="Rain Forest Experiences CR"
+                width={180}
+                height={60}
+                className="h-14 w-auto object-contain mb-4"
+              />
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed mt-4">
               Authentic rainforest experiences in La Fortuna, Costa Rica.
               Personalized tours with certified local guides.
@@ -37,19 +41,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                { label: "Home", href: "#hero" },
-                { label: "Tours", href: "#tours" },
-                { label: "La Fortuna", href: "#fortuna" },
-                { label: "About", href: "#about" },
-                { label: "Reviews", href: "#reviews" },
+                { label: "Home", href: "/" },
+                { label: "Tours", href: "/tours" },
+                { label: "About Us", href: "/about" },
+                { label: "Contact", href: "/contact" },
+                { label: "FAQ", href: "/faq" },
               ].map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-white/60 hover:text-forest-400 transition-colors text-sm"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -61,21 +65,14 @@ export default function Footer() {
               Our Tours
             </h4>
             <ul className="space-y-3">
-              {[
-                "Night Rainforest Walk",
-                "Sloth & Wildlife Tour",
-                "La Fortuna Waterfall",
-                "Hanging Bridges",
-                "Arenal Volcano Hike",
-                "Hot Springs",
-              ].map((tour) => (
-                <li key={tour}>
-                  <a
-                    href="#tours"
+              {tours.map((tour) => (
+                <li key={tour.slug}>
+                  <Link
+                    href={`/tours/${tour.slug}`}
                     className="text-white/60 hover:text-forest-400 transition-colors text-sm"
                   >
-                    {tour}
-                  </a>
+                    {tour.shortTitle}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -158,9 +155,18 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Rain Forest Experiences CR. All
             rights reserved.
           </p>
-          <p className="text-white/40 text-xs">
-            Pura Vida from La Fortuna, Costa Rica
-          </p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/faq"
+              className="text-white/40 hover:text-forest-400 text-sm transition-colors"
+            >
+              FAQ
+            </Link>
+            <span className="text-white/20">|</span>
+            <p className="text-white/40 text-xs">
+              Pura Vida from La Fortuna, Costa Rica
+            </p>
+          </div>
         </div>
       </div>
     </footer>

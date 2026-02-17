@@ -107,6 +107,23 @@ export const en = {
     },
   },
 
+  // Tour metadata translations (duration, difficulty, schedule, group size)
+  tourMeta: {
+    durations: {
+      "3 hours": "3 hours",
+      "4 hours": "4 hours",
+      "7 hours": "7 hours",
+      "8 hours": "8 hours",
+    },
+    difficulties: {
+      Easy: "Easy",
+      Moderate: "Moderate",
+      Challenging: "Challenging",
+    },
+    schedule: "Daily departures",
+    maxGroup: "Small groups",
+  },
+
   // Tour detail page labels
   tourDetail: {
     aboutTour: "About This Tour",

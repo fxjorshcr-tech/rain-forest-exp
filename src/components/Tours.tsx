@@ -34,6 +34,8 @@ export default function Tours() {
             const td = (t.tourData as Record<string, { title: string; shortTitle: string; description: string }>)[tour.slug];
             const title = td?.title ?? tour.title;
             const description = td?.description ?? tour.description;
+            const duration = (t.tourMeta.durations as Record<string, string>)[tour.duration] ?? tour.duration;
+            const maxGroup = t.tourMeta.maxGroup;
 
             return (
               <Link
@@ -70,11 +72,11 @@ export default function Tours() {
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-5">
                     <span className="flex items-center gap-1.5">
                       <Clock size={15} className="text-forest-600" />
-                      {tour.duration}
+                      {duration}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Users size={15} className="text-forest-600" />
-                      {tour.maxGroup}
+                      {maxGroup}
                     </span>
                   </div>
                   <span className="inline-flex items-center gap-2 text-forest-700 font-semibold text-sm group-hover:gap-3 transition-all">

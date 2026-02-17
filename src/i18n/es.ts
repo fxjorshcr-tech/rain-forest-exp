@@ -115,6 +115,23 @@ export const es: typeof en = {
     },
   },
 
+  // Tour metadata translations
+  tourMeta: {
+    durations: {
+      "3 hours": "3 horas",
+      "4 hours": "4 horas",
+      "7 hours": "7 horas",
+      "8 hours": "8 horas",
+    },
+    difficulties: {
+      Easy: "Facil",
+      Moderate: "Moderado",
+      Challenging: "Desafiante",
+    },
+    schedule: "Salidas diarias",
+    maxGroup: "Grupos pequenos",
+  },
+
   // Tour detail page labels
   tourDetail: {
     aboutTour: "Sobre Este Tour",

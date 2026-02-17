@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Shield, Clock, Users, Check, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { es as esLocale } from "date-fns/locale/es";
 import type { Tour } from "@/data/tours";
 import { useLanguage } from "@/i18n/context";
 
@@ -83,6 +84,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                   onSelect={setSelectedDate}
                   disabled={{ before: today }}
                   showOutsideDays
+                  locale={locale === "es" ? esLocale : undefined}
                   classNames={{
                     root: "w-full",
                     months: "w-full",

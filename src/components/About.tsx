@@ -1,21 +1,31 @@
 import Image from "next/image";
-import { Award, Heart, Shield, Leaf } from "lucide-react";
+import { Award, Heart, Shield, Leaf, GraduationCap, Binoculars } from "lucide-react";
 
 const highlights = [
   {
+    icon: GraduationCap,
+    title: "B.A. in Ecological Tourism",
+    description: "Graduated from the University of Costa Rica with a degree in Ecological Tourism.",
+  },
+  {
     icon: Award,
-    title: "Certified Naturalist",
-    description: "ICT-certified local guide with extensive training in biology and ecology.",
+    title: "Licensed Guide — INA",
+    description: "Officially certified General Guide by the National Learning Institute of Costa Rica.",
+  },
+  {
+    icon: Shield,
+    title: "Lifeguard, First Aid & CPR",
+    description: "Professional lifeguard with first aid and CPR certifications for your safety.",
+  },
+  {
+    icon: Binoculars,
+    title: "Expert Birder & Naturalist",
+    description: "13+ years of experience in birdwatching and naturalism across Costa Rica.",
   },
   {
     icon: Heart,
     title: "Passion for Nature",
     description: "Born and raised in La Fortuna with a lifelong dedication to the rainforest.",
-  },
-  {
-    icon: Shield,
-    title: "Safety First",
-    description: "First-aid certified with years of experience ensuring safe, memorable adventures.",
   },
   {
     icon: Leaf,
@@ -33,8 +43,8 @@ export default function About() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
               <Image
-                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/WhatsApp%20Image%202026-01-14%20at%209.02.46%20AM.jpeg"
-                alt="Your local guide"
+                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/1gabriel-guide.avif"
+                alt="Gabriel — Your local naturalist guide"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -46,7 +56,7 @@ export default function About() {
 
             {/* Experience badge */}
             <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-              <div className="text-3xl font-bold text-forest-700">10+</div>
+              <div className="text-3xl font-bold text-forest-700">13+</div>
               <div className="text-sm text-gray-600">Years of Experience</div>
             </div>
           </div>
@@ -54,7 +64,7 @@ export default function About() {
           {/* Content side */}
           <div>
             <span className="text-forest-600 font-semibold text-sm tracking-[0.2em] uppercase">
-              Meet Your Guide
+              Meet Gabriel
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gray-900">
               Your Personal Connection
@@ -65,26 +75,24 @@ export default function About() {
             </h2>
             <div className="mt-6 space-y-4 text-gray-600 leading-relaxed">
               <p>
-                Born and raised in the heart of La Fortuna, I grew up surrounded
-                by the wonders of the rainforest. From childhood explorations to
-                becoming a certified naturalist guide, my passion has always been
-                sharing the magic of Costa Rica&apos;s biodiversity with visitors
-                from around the world.
+                Born and raised in the heart of La Fortuna, Gabriel grew up
+                surrounded by the wonders of the rainforest. With a
+                Bachelor&apos;s degree in Ecological Tourism from the University
+                of Costa Rica and over 13 years of professional experience, his
+                passion has always been sharing the magic of Costa Rica&apos;s
+                biodiversity with visitors from around the world.
               </p>
               <p>
-                With over a decade of experience leading tours through the
-                rainforest, I bring a deep, personal knowledge of the local
-                ecosystem — the secret spots where sloths sleep, the trails where
-                toucans feed, and the streams where poison dart frogs thrive.
-                Every tour is a personal experience, not just a walk through the
-                woods.
+                Gabriel brings a deep, personal knowledge of the local
+                ecosystem — the secret spots where sloths sleep, the trails
+                where toucans feed, and the streams where poison dart frogs
+                thrive. Every tour is a personal experience, not just a walk
+                through the woods.
               </p>
               <p>
-                My mission is to create authentic, unforgettable connections
-                between people and nature, while supporting conservation and the
-                local community. When you book with Rain Forest Experiences,
-                you&apos;re getting more than a tour — you&apos;re gaining a
-                friend in the jungle.
+                When you book with Rain Forest Experiences, you&apos;re not
+                just getting a tour — you&apos;re gaining a friend in the
+                jungle.
               </p>
             </div>
 

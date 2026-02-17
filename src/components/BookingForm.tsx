@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Shield, Clock, Users, Check, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 import type { Tour } from "@/data/tours";
+import { useLanguage } from "@/i18n/context";
 
 export default function BookingForm({ tour }: { tour: Tour }) {
   const [adults, setAdults] = useState(2);
@@ -13,11 +14,12 @@ export default function BookingForm({ tour }: { tour: Tour }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [step, setStep] = useState<1 | 2>(1);
+  const { t, locale } = useLanguage();
 
   const total = adults * tour.price + children * Math.round(tour.price * 0.5);
 
   const formattedDate = selectedDate
-    ? selectedDate.toLocaleDateString("en-US", {
+    ? selectedDate.toLocaleDateString(locale === "es" ? "es-CR" : "en-US", {
         weekday: "short",
         month: "short",
         day: "numeric",
@@ -27,15 +29,15 @@ export default function BookingForm({ tour }: { tour: Tour }) {
 
   const handleReserve = () => {
     const msg = encodeURIComponent(
-      `Hello! I'd like to book:\n\n` +
-        `Tour: ${tour.title}\n` +
-        `Date: ${formattedDate}\n` +
-        `Time: ${time}\n` +
-        `Adults: ${adults} ($${tour.price} each)\n` +
-        `Children: ${children} ($${Math.round(tour.price * 0.5)} each)\n` +
-        `Total: $${total}\n\n` +
-        `Name: ${name}\n` +
-        `Email: ${email}`
+      `${t.booking.whatsappMsg}\n\n` +
+        `${t.booking.tourLabel}: ${tour.title}\n` +
+        `${t.booking.dateLabel}: ${formattedDate}\n` +
+        `${t.booking.timeLabel}: ${time}\n` +
+        `${t.booking.adultsMsg}: ${adults} ($${tour.price})\n` +
+        `${t.booking.childrenMsg}: ${children} ($${Math.round(tour.price * 0.5)})\n` +
+        `${t.booking.totalMsg}: $${total}\n\n` +
+        `${t.booking.nameMsg}: ${name}\n` +
+        `${t.booking.emailMsg}: ${email}`
     );
     window.open(`https://wa.me/50685104507?text=${msg}`, "_blank");
   };
@@ -43,13 +45,15 @@ export default function BookingForm({ tour }: { tour: Tour }) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const trustSignals = [t.booking.freeCancellation, t.booking.instantConfirmation, t.booking.secureBooking];
+
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden sticky top-28">
       {/* Header */}
       <div className="bg-forest-900 text-white p-6">
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-bold">${tour.price}</span>
-          <span className="text-white/70 text-sm">/ per person</span>
+          <span className="text-white/70 text-sm">{t.booking.perPerson}</span>
         </div>
         <div className="mt-2 flex items-center gap-4 text-sm text-white/70">
           <span className="flex items-center gap-1">
@@ -70,7 +74,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             <div>
               <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
                 <CalendarDays size={16} className="text-forest-600" />
-                Select Date
+                {t.booking.selectDate}
               </label>
               <div className="flex justify-center">
                 <DayPicker
@@ -125,20 +129,20 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Time */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Start Time
+                {t.booking.startTime}
               </label>
               <div className="flex flex-wrap gap-2">
-                {tour.startTimes.map((t) => (
+                {tour.startTimes.map((st) => (
                   <button
-                    key={t}
-                    onClick={() => setTime(t)}
+                    key={st}
+                    onClick={() => setTime(st)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      time === t
+                      time === st
                         ? "bg-forest-700 text-white shadow-md shadow-forest-700/20"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {t}
+                    {st}
                   </button>
                 ))}
               </div>
@@ -147,7 +151,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Adults */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Adults
+                {t.booking.adults}
               </label>
               <div className="flex items-center gap-3">
                 <button
@@ -174,7 +178,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Children */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Children (50% off)
+                {t.booking.children}
               </label>
               <div className="flex items-center gap-3">
                 <button
@@ -201,7 +205,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Total */}
             <div className="border-t border-gray-100 pt-4">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-gray-600 font-medium">Total</span>
+                <span className="text-gray-600 font-medium">{t.booking.total}</span>
                 <span className="text-2xl font-bold text-gray-900">${total}</span>
               </div>
               <button
@@ -211,7 +215,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                 disabled={!selectedDate}
                 className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20"
               >
-                Continue to Booking
+                {t.booking.continueTo}
               </button>
             </div>
           </>
@@ -220,17 +224,17 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Summary */}
             <div className="bg-forest-50 rounded-xl p-4 space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Date</span>
+                <span className="text-gray-600">{t.booking.date}</span>
                 <span className="font-medium text-gray-900">{formattedDate}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Time</span>
+                <span className="text-gray-600">{t.booking.time}</span>
                 <span className="font-medium text-gray-900">{time}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">
-                  {adults} Adult{adults > 1 ? "s" : ""}
-                  {children > 0 && `, ${children} Child${children > 1 ? "ren" : ""}`}
+                  {adults} {adults > 1 ? t.booking.adultsLabel : t.booking.adult}
+                  {children > 0 && `, ${children} ${children > 1 ? t.booking.childrenLabel : t.booking.child}`}
                 </span>
                 <span className="font-bold text-gray-900">${total}</span>
               </div>
@@ -239,13 +243,13 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Full Name
+                {t.booking.fullName}
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
+                placeholder={t.booking.yourName}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 placeholder:text-gray-400"
               />
             </div>
@@ -253,13 +257,13 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Email
+                {t.booking.email}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
+                placeholder={t.booking.emailPlaceholder}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 placeholder:text-gray-400"
               />
             </div>
@@ -271,13 +275,13 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                 className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2"
               >
                 <Shield size={18} />
-                Reserve Now — ${total}
+                {t.booking.reserveNow} — ${total}
               </button>
               <button
                 onClick={() => setStep(1)}
                 className="w-full text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors"
               >
-                ← Back to details
+                {t.booking.backToDetails}
               </button>
             </div>
           </>
@@ -285,14 +289,12 @@ export default function BookingForm({ tour }: { tour: Tour }) {
 
         {/* Trust signals */}
         <div className="border-t border-gray-100 pt-4 space-y-2">
-          {["Free cancellation up to 24hrs", "Instant confirmation", "Secure booking"].map(
-            (text) => (
-              <div key={text} className="flex items-center gap-2 text-xs text-gray-500">
-                <Check size={14} className="text-forest-600" />
-                {text}
-              </div>
-            )
-          )}
+          {trustSignals.map((text) => (
+            <div key={text} className="flex items-center gap-2 text-xs text-gray-500">
+              <Check size={14} className="text-forest-600" />
+              {text}
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,13 +9,24 @@ import {
   Instagram,
   Facebook,
 } from "lucide-react";
-import { getTours } from "@/data/tours";
+import { tours } from "@/data/tours";
+import { useLanguage } from "@/i18n/context";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
-export default async function Footer() {
-  const tours = await getTours();
+export default function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
+  const quickLinks = [
+    { label: f.home, href: "/" },
+    { label: f.tours, href: "/tours" },
+    { label: f.aboutUs, href: "/about" },
+    { label: f.contact, href: "/contact" },
+    { label: f.faq, href: "/faq" },
+  ];
+
   return (
     <footer className="bg-dark-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -30,24 +43,17 @@ export default async function Footer() {
               />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mt-4">
-              Authentic rainforest experiences in La Fortuna, Costa Rica.
-              Personalized tours with certified local guides.
+              {f.brand}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-              Quick Links
+              {f.quickLinks}
             </h4>
             <ul className="space-y-3">
-              {[
-                { label: "Home", href: "/" },
-                { label: "Tours", href: "/tours" },
-                { label: "About Us", href: "/about" },
-                { label: "Contact", href: "/contact" },
-                { label: "FAQ", href: "/faq" },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -63,7 +69,7 @@ export default async function Footer() {
           {/* Tours */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-              Our Tours
+              {f.ourTours}
             </h4>
             <ul className="space-y-3">
               {tours.map((tour) => (
@@ -82,7 +88,7 @@ export default async function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-              Contact Us
+              {f.contactUs}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
@@ -153,19 +159,18 @@ export default async function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} Rain Forest Experiences CR. All
-            rights reserved.
+            &copy; {new Date().getFullYear()} Rain Forest Experiences CR. {f.rights}
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/faq"
               className="text-white/40 hover:text-forest-400 text-sm transition-colors"
             >
-              FAQ
+              {f.faq}
             </Link>
             <span className="text-white/20">|</span>
             <p className="text-white/40 text-xs">
-              Pura Vida from La Fortuna, Costa Rica
+              {f.puraVida}
             </p>
           </div>
         </div>

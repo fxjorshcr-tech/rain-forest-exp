@@ -8,60 +8,84 @@ const AIRBNB_URL =
 
 const reviews = [
   {
-    name: "Sarah",
+    name: "Yeraldid",
+    location: "Fullerton, California",
     rating: 5,
-    text: "Absolutely incredible experience! Gabriel was so knowledgeable about the wildlife and made the night walk truly magical. We saw red-eyed tree frogs, a sleeping toucan, and even a sloth! Highly recommend.",
-    date: "January 2026",
-    avatar: "S",
-  },
-  {
-    name: "Thomas",
-    rating: 5,
-    text: "The best tour we did in Costa Rica. Small group, very personal attention, and Gabriel's passion for nature was contagious. The waterfall hike was breathtaking. A must-do in La Fortuna!",
-    date: "December 2025",
-    avatar: "T",
-  },
-  {
-    name: "Emma",
-    rating: 5,
-    text: "We booked the combo day tour and it was worth every penny. From the hanging bridges to the hot springs, every moment was perfect. The traditional lunch was delicious too!",
-    date: "January 2026",
-    avatar: "E",
-  },
-  {
-    name: "Carlos",
-    rating: 5,
-    text: "Una experiencia maravillosa. Gabriel conoce cada rincon del bosque y nos mostro animales que nunca hubieramos visto solos. El tour nocturno fue increible. 100% recomendado.",
-    date: "December 2025",
-    avatar: "C",
-  },
-  {
-    name: "Jennifer",
-    rating: 5,
-    text: "Highlight of our honeymoon! The sloth tour was so peaceful and we saw monkeys, iguanas, and so many birds. Gabriel was patient, fun, and incredibly knowledgeable. Thank you for an unforgettable day!",
-    date: "November 2025",
-    avatar: "J",
-  },
-  {
-    name: "Yuki",
-    rating: 5,
-    text: "Amazing wildlife tour! We saw three different species of sloths, toucans, and howler monkeys. Gabriel had professional spotting equipment and explained everything in detail. Best tour in La Fortuna.",
+    text: "We had a great time with Josue. It's been our highlight of our trip thus far. We were able to see a Tucan, tarantula, unique hummingbird, spider monkies. The history and learning experience added to the experience. 10/10",
     date: "January 2026",
     avatar: "Y",
   },
   {
-    name: "Marie",
+    name: "Ashmit",
+    location: "United States",
     rating: 5,
-    text: "Excellente experience dans la foret tropicale! Gabriel etait tres professionnel et passionne. Les ponts suspendus offrent une vue magnifique. Je recommande vivement cette aventure.",
-    date: "December 2025",
-    avatar: "M",
+    text: "The experience was truly magical from start to finish. We began the hike surrounded by thick clouds, which made us disappointed, but just as we reached the end of the lava trail, the skies cleared to reveal a breathtaking, picture-perfect view of the volcano — it felt incredibly rewarding and almost cinematic. Our guide was outstanding, sharing deep knowledge of Arenal's history and geology in a way that was engaging and easy to follow.",
+    date: "January 2026",
+    avatar: "A",
   },
   {
-    name: "David",
+    name: "Eric",
+    location: "Saint-Philippe, Canada",
     rating: 5,
-    text: "We've done tours all over the world, and this was hands down one of the best. The personalized attention, the small group size, and Gabriel's encyclopedic knowledge of the rainforest made this truly special.",
-    date: "January 2026",
-    avatar: "D",
+    text: "What an amazing experience! We were kind of worried that it would be too much of a walk and a climb but it was just perfect. We never felt like if we were in a rush. Daniela took all the time to answer every single question we had and she was extremely knowledgable and funny. We very much appreciated this excursion as it's a fantastic site and we strongly recommend it.",
+    date: "December 2025",
+    avatar: "E",
+  },
+  {
+    name: "Andrew",
+    location: "Ann Arbor, Michigan",
+    rating: 5,
+    text: "This was a fascinating hike through volcanic territory filled with interesting facts from Gabriel and a few animal spottings. Gabriel made the trip very interesting, thrilling at times, and a great introduction to the Arenal area. Gabriel himself was a stellar guide who I would hire again and again.",
+    date: "December 2025",
+    avatar: "A",
+  },
+  {
+    name: "Janine",
+    location: "Newark, Delaware",
+    rating: 5,
+    text: "This experience was exactly what we were looking for. Our guide met us at the entrance and provided us so much useful information about what we were seeing. We hadn't yet seen a sloth on our trip and let the guide know. Within the first few minutes, she spotted one and got out the scope for us to take a look. Mission accomplished!",
+    date: "November 2025",
+    avatar: "J",
+  },
+  {
+    name: "Peter",
+    location: "Hamilton, Canada",
+    rating: 5,
+    text: "Tour guide was amazing, very knowledgeable about the location and very accommodating to our family. Highly recommend!",
+    date: "November 2025",
+    avatar: "P",
+  },
+  {
+    name: "Rajiv",
+    location: "New York, NY",
+    rating: 5,
+    text: "Gabriel's tour was a great experience especially if you're interested in geography and nature. He is extremely knowledgeable and was patient with all our questions. He even took a lot of pictures and videos from his scope when there were interesting finds along the way. I would strongly recommend his guided tour.",
+    date: "April 2025",
+    avatar: "R",
+  },
+  {
+    name: "Griselda",
+    location: "Tlaquepaque, Mexico",
+    rating: 5,
+    text: "Excelente atencion por parte de Gabriel, mucha informacion, siempre amable y resolviendo dudas, siempre atento en la comunicacion, en el inter del camino siempre estuvo dando alertas de donde debiamos pisar. Recomendado al 100!",
+    date: "February 2025",
+    avatar: "G",
+  },
+  {
+    name: "Rachel",
+    location: "New York, US",
+    rating: 5,
+    text: "The hike was great! Even though it was a rainy day and we couldn't see the volcano, Gabriel pointed out many things we wouldn't have noticed on our own and told us interesting facts about the wildlife and the land. Gabriel was very accommodating of our pace.",
+    date: "February 2025",
+    avatar: "R",
+  },
+  {
+    name: "Sarah",
+    location: "Chicago, Illinois",
+    rating: 5,
+    text: "Great opportunity to see the volcano and its surroundings! Climb to the viewing point and other points were very steep but not too bad overall. Our guide Gerardo was very knowledgeable and shared tons of information on the volcano! Would recommend!",
+    date: "January 2025",
+    avatar: "S",
   },
 ];
 
@@ -86,11 +110,11 @@ function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
         <div className="w-10 h-10 rounded-full bg-forest-600 flex items-center justify-center text-white font-semibold text-sm">
           {review.avatar}
         </div>
-        <div>
+        <div className="flex-1 min-w-0">
           <h4 className="font-semibold text-gray-900 text-sm">
             {review.name}
           </h4>
-          <p className="text-gray-500 text-xs">{review.date}</p>
+          <p className="text-gray-500 text-xs">{review.location} &bull; {review.date}</p>
         </div>
         <AirbnbIcon />
       </div>

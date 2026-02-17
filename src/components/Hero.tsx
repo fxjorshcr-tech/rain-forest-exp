@@ -52,7 +52,7 @@ export default function Hero() {
                 Explore Our Tours
               </a>
               <a
-                href="https://wa.me/50688888888"
+                href="https://wa.me/50685104507"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white/40 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/10 text-center"

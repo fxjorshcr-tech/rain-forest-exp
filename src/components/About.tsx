@@ -43,7 +43,7 @@ export default function About() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
               <Image
-                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/1gabriel-guide.avif"
+                src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/1gabriel-expert-natural.avif"
                 alt="Gabriel — Your local naturalist guide"
                 fill
                 className="object-cover"

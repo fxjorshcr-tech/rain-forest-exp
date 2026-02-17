@@ -93,11 +93,11 @@ export default async function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+50688888888"
+                  href="tel:+50685104507"
                   className="flex items-center gap-3 text-white/60 hover:text-forest-400 transition-colors text-sm"
                 >
                   <Phone size={18} className="text-forest-400 flex-shrink-0" />
-                  +506 8888-8888
+                  +506 8510-4507
                 </a>
               </li>
               <li>
@@ -132,7 +132,7 @@ export default async function Footer() {
                 <Facebook size={18} />
               </a>
               <a
-                href="https://wa.me/50688888888"
+                href="https://wa.me/50685104507"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-forest-600 transition-colors"

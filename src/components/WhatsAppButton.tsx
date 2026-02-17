@@ -44,7 +44,7 @@ export default function WhatsAppButton() {
 
       {/* WhatsApp button */}
       <a
-        href="https://wa.me/50688888888?text=Hello!%20I%27m%20interested%20in%20your%20tours%20in%20La%20Fortuna"
+        href="https://wa.me/50685104507?text=Hello!%20I%27m%20interested%20in%20your%20tours%20in%20La%20Fortuna"
         target="_blank"
         rel="noopener noreferrer"
         className="group w-16 h-16 bg-[#25D366] hover:bg-[#20BD5A] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all hover:scale-110 animate-bounce"

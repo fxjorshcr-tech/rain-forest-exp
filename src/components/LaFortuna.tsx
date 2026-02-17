@@ -1,34 +1,42 @@
+"use client";
+
 import Image from "next/image";
 import { TreePine, Mountain, Droplets, Bird } from "lucide-react";
-
-const features = [
-  {
-    icon: Mountain,
-    title: "Arenal Volcano",
-    description:
-      "One of the most active volcanoes in the world, towering at 1,670 meters with breathtaking views and rich biodiversity on its slopes.",
-  },
-  {
-    icon: Droplets,
-    title: "Natural Hot Springs",
-    description:
-      "Heated by volcanic activity, the thermal waters create natural hot springs throughout the region, perfect for relaxation after a day of adventure.",
-  },
-  {
-    icon: TreePine,
-    title: "Tropical Rainforest",
-    description:
-      "Dense, lush rainforest covering over 500,000 hectares with some of the highest biodiversity on Earth — home to 5% of the world's species.",
-  },
-  {
-    icon: Bird,
-    title: "Incredible Wildlife",
-    description:
-      "Spot sloths, toucans, monkeys, poison dart frogs, quetzals, and hundreds of other species in their pristine natural habitat.",
-  },
-];
+import { useLanguage } from "@/i18n/context";
 
 export default function LaFortuna() {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Mountain,
+      title: t.laFortuna.volcanoTitle,
+      description: t.laFortuna.volcanoDesc,
+    },
+    {
+      icon: Droplets,
+      title: t.laFortuna.hotSpringsTitle,
+      description: t.laFortuna.hotSpringsDesc,
+    },
+    {
+      icon: TreePine,
+      title: t.laFortuna.rainforestTitle,
+      description: t.laFortuna.rainforestDesc,
+    },
+    {
+      icon: Bird,
+      title: t.laFortuna.wildlifeTitle,
+      description: t.laFortuna.wildlifeDesc,
+    },
+  ];
+
+  const stats = [
+    { value: "500+", label: t.laFortuna.statSpecies },
+    { value: "70m", label: t.laFortuna.statWaterfall },
+    { value: "1,670m", label: t.laFortuna.statVolcano },
+    { value: "27°C", label: t.laFortuna.statTemp },
+  ];
+
   return (
     <section id="fortuna" className="relative py-24 overflow-hidden">
       {/* Background image */}
@@ -47,20 +55,16 @@ export default function LaFortuna() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase">
-            Our Paradise
+            {t.laFortuna.label}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-            La Fortuna de{" "}
+            {t.laFortuna.title1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
-              San Carlos
+              {t.laFortuna.title2}
             </span>
           </h2>
           <p className="mt-6 text-white/80 max-w-3xl mx-auto text-lg leading-relaxed">
-            Nestled at the base of the majestic Arenal Volcano, La Fortuna is a
-            small town with enormous natural beauty. Surrounded by tropical
-            rainforest, waterfalls, rivers, and volcanic hot springs, it is one
-            of Costa Rica&apos;s most spectacular destinations and a true
-            paradise for nature lovers and adventurers.
+            {t.laFortuna.subtitle}
           </p>
         </div>
 
@@ -89,12 +93,7 @@ export default function LaFortuna() {
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { value: "500+", label: "Wildlife Species" },
-            { value: "70m", label: "Waterfall Height" },
-            { value: "1,670m", label: "Volcano Elevation" },
-            { value: "27°C", label: "Average Temperature" },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label}>
               <div className="text-3xl md:text-4xl font-bold text-forest-400">
                 {stat.value}

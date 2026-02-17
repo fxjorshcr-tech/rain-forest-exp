@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { useLanguage } from "@/i18n/context";
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
   const [tooltip, setTooltip] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 2000);
@@ -34,10 +36,10 @@ export default function WhatsAppButton() {
             <X size={14} />
           </button>
           <p className="text-sm text-gray-700 font-medium">
-            Need help booking?
+            {t.whatsapp.needHelp}
           </p>
           <p className="text-xs text-gray-500 mt-1">
-            Chat with us on WhatsApp for instant assistance!
+            {t.whatsapp.chatWithUs}
           </p>
         </div>
       )}

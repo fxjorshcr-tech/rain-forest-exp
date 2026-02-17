@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { tours } from "@/data/tours";
+import { useLanguage } from "@/i18n/context";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,17 +35,16 @@ export default function ContactPage() {
         </div>
         <div className="relative z-10 text-center px-4">
           <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase block mb-3">
-            Get In Touch
+            {t.contact.label}
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
-            Contact{" "}
+            {t.contact.pageTitle1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
-              Us
+              {t.contact.pageTitle2}
             </span>
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">
-            Ready for your adventure? Send us a message and we&apos;ll help you plan
-            the perfect rainforest experience.
+            {t.contact.pageSubtitle}
           </p>
         </div>
       </section>
@@ -55,14 +56,14 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-forest-900 rounded-2xl p-8 text-white">
-                <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+                <h3 className="text-xl font-bold mb-6">{t.contact.contactInfo}</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-forest-700/50 flex items-center justify-center flex-shrink-0">
                       <MapPin size={20} className="text-forest-400" />
                     </div>
                     <div>
-                      <p className="font-medium text-sm">Location</p>
+                      <p className="font-medium text-sm">{t.contact.location}</p>
                       <p className="text-white/70 text-sm mt-1">
                         La Fortuna de San Carlos,
                         <br />
@@ -75,7 +76,7 @@ export default function ContactPage() {
                       <Phone size={20} className="text-forest-400" />
                     </div>
                     <div>
-                      <p className="font-medium text-sm">Phone / WhatsApp</p>
+                      <p className="font-medium text-sm">{t.contact.phone}</p>
                       <a
                         href="tel:+50685104507"
                         className="text-white/70 text-sm mt-1 hover:text-forest-400 transition-colors block"
@@ -89,7 +90,7 @@ export default function ContactPage() {
                       <Mail size={20} className="text-forest-400" />
                     </div>
                     <div>
-                      <p className="font-medium text-sm">Email</p>
+                      <p className="font-medium text-sm">{t.contact.emailLabel}</p>
                       <a
                         href="mailto:info@rainforestexperiencescr.com"
                         className="text-white/70 text-sm mt-1 hover:text-forest-400 transition-colors block"
@@ -103,16 +104,16 @@ export default function ContactPage() {
                       <Clock size={20} className="text-forest-400" />
                     </div>
                     <div>
-                      <p className="font-medium text-sm">Hours</p>
+                      <p className="font-medium text-sm">{t.contact.hours}</p>
                       <p className="text-white/70 text-sm mt-1">
-                        Mon - Sun: 6:00 AM - 9:00 PM
+                        {t.contact.hoursValue}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Map placeholder */}
+              {/* Map */}
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31392.24591920882!2d-84.65!3d10.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e36e906b5795%3A0x4a2d0f2a6d842f38!2sLa%20Fortuna%2C%20San%20Carlos%2C%20Alajuela%2C%20Costa%20Rica!5e0!3m2!1sen!2sus!4v1700000000000"
@@ -134,7 +135,7 @@ export default function ContactPage() {
                 className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 space-y-6"
               >
                 <h3 className="text-xl font-bold text-gray-900">
-                  Send Us a Message
+                  {t.contact.sendMessage}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -143,14 +144,14 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Full Name
+                      {t.contact.fullName}
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
-                      placeholder="Your name"
+                      placeholder={t.contact.namePlaceholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none transition-all text-sm text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
@@ -159,14 +160,14 @@ export default function ContactPage() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Email
+                      {t.contact.emailLabel}
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      placeholder="your@email.com"
+                      placeholder={t.contact.emailPlaceholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none transition-all text-sm text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
@@ -177,19 +178,22 @@ export default function ContactPage() {
                     htmlFor="tour"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Tour Interest
+                    {t.contact.tourInterest}
                   </label>
                   <select
                     id="tour"
                     name="tour"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none transition-all text-sm text-gray-900 bg-white"
                   >
-                    <option value="General Inquiry">General Inquiry</option>
-                    {tours.map((t) => (
-                      <option key={t.slug} value={t.title}>
-                        {t.title}
-                      </option>
-                    ))}
+                    <option value={t.contact.generalInquiry}>{t.contact.generalInquiry}</option>
+                    {tours.map((tour) => {
+                      const td = (t.tourData as Record<string, { title: string }>)[tour.slug];
+                      return (
+                        <option key={tour.slug} value={tour.title}>
+                          {td?.title ?? tour.title}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
@@ -199,7 +203,7 @@ export default function ContactPage() {
                       htmlFor="date"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Preferred Date
+                      {t.contact.preferredDate}
                     </label>
                     <input
                       type="date"
@@ -213,7 +217,7 @@ export default function ContactPage() {
                       htmlFor="guests"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Number of Guests
+                      {t.contact.numGuests}
                     </label>
                     <input
                       type="number"
@@ -232,13 +236,13 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Message
+                    {t.contact.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="Tell us about your trip plans, special requirements, or any questions..."
+                    placeholder={t.contact.messagePlaceholder}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none transition-all text-sm text-gray-900 placeholder:text-gray-400 resize-none"
                   />
                 </div>
@@ -248,17 +252,17 @@ export default function ContactPage() {
                   className="w-full bg-forest-700 hover:bg-forest-600 text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2"
                 >
                   {submitted ? (
-                    "Message Sent! Redirecting to WhatsApp..."
+                    t.contact.messageSent
                   ) : (
                     <>
-                      Send Message
+                      {t.contact.sendBtn}
                       <Send size={18} />
                     </>
                   )}
                 </button>
 
                 <p className="text-center text-xs text-gray-400">
-                  Your message will be sent via WhatsApp for a faster response.
+                  {t.contact.whatsappNote}
                 </p>
               </form>
             </div>

@@ -15,6 +15,7 @@ import {
 import type { Tour } from "@/data/tours";
 import BookingForm from "@/components/BookingForm";
 import { useLanguage } from "@/i18n/context";
+import { tourContentEs } from "@/i18n/tourContent";
 
 export default function TourDetailContent({
   tour,
@@ -23,10 +24,24 @@ export default function TourDetailContent({
   tour: Tour;
   otherTours: Tour[];
 }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const td = (t.tourData as Record<string, { title: string; shortTitle: string; description: string }>)[tour.slug];
   const title = td?.title ?? tour.title;
   const shortTitle = td?.shortTitle ?? tour.shortTitle;
+
+  // Full content translation for detail page
+  const esContent = locale === "es" ? tourContentEs[tour.slug] : null;
+  const longDescription = esContent?.longDescription ?? tour.longDescription;
+  const highlights = esContent?.highlights ?? tour.highlights;
+  const includes = esContent?.includes ?? tour.includes;
+  const whatToBring = esContent?.whatToBring ?? tour.whatToBring;
+  const note = esContent?.note ?? tour.note;
+
+  // Metadata translations
+  const duration = (t.tourMeta.durations as Record<string, string>)[tour.duration] ?? tour.duration;
+  const difficulty = (t.tourMeta.difficulties as Record<string, string>)[tour.difficulty] ?? tour.difficulty;
+  const schedule = t.tourMeta.schedule;
+  const maxGroup = t.tourMeta.maxGroup;
 
   return (
     <main>
@@ -60,7 +75,7 @@ export default function TourDetailContent({
             <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-white/80">
               <span className="flex items-center gap-1.5">
                 <Clock size={16} />
-                {tour.duration}
+                {duration}
               </span>
               <span className="flex items-center gap-1.5">
                 <MapPin size={16} />
@@ -68,11 +83,11 @@ export default function TourDetailContent({
               </span>
               <span className="flex items-center gap-1.5">
                 <Calendar size={16} />
-                {tour.schedule}
+                {schedule}
               </span>
               <span className="flex items-center gap-1.5">
                 <Users size={16} />
-                {tour.maxGroup}
+                {maxGroup}
               </span>
               <span className="flex items-center gap-1 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
                 <Star size={14} className="text-gold-400 fill-gold-400" />
@@ -95,7 +110,7 @@ export default function TourDetailContent({
                   {t.tourDetail.aboutTour}
                 </h2>
                 <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed">
-                  {tour.longDescription.split("\n\n").map((p, i) => (
+                  {longDescription.split("\n\n").map((p, i) => (
                     <p key={i} className="mb-4 last:mb-0">
                       {p}
                     </p>
@@ -109,7 +124,7 @@ export default function TourDetailContent({
                   {t.tourDetail.highlights}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {tour.highlights.map((h) => (
+                  {highlights.map((h) => (
                     <div key={h} className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-forest-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check size={14} className="text-forest-700" />
@@ -128,7 +143,7 @@ export default function TourDetailContent({
                     {t.tourDetail.whatsIncluded}
                   </h3>
                   <ul className="space-y-3">
-                    {tour.includes.map((item) => (
+                    {includes.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <Check
                           size={16}
@@ -146,7 +161,7 @@ export default function TourDetailContent({
                     {t.tourDetail.whatToBring}
                   </h3>
                   <ul className="space-y-3">
-                    {tour.whatToBring.map((item) => (
+                    {whatToBring.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <ChevronRight
                           size={16}
@@ -170,7 +185,7 @@ export default function TourDetailContent({
                       {t.tourDetail.duration}
                     </div>
                     <div className="font-semibold text-gray-900">
-                      {tour.duration}
+                      {duration}
                     </div>
                   </div>
                   <div>
@@ -178,7 +193,7 @@ export default function TourDetailContent({
                       {t.tourDetail.difficulty}
                     </div>
                     <div className="font-semibold text-gray-900">
-                      {tour.difficulty}
+                      {difficulty}
                     </div>
                   </div>
                   <div>
@@ -198,10 +213,10 @@ export default function TourDetailContent({
                     </div>
                   </div>
                 </div>
-                {tour.note && (
+                {note && (
                   <div className="mt-4 flex items-start gap-2 text-sm text-amber-700 bg-amber-50 rounded-xl p-3">
                     <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
-                    {tour.note}
+                    {note}
                   </div>
                 )}
               </div>

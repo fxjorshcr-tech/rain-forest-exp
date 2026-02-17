@@ -5,21 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/i18n/context";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Tours", href: "/tours" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { key: "home" as const, href: "/" },
+  { key: "tours" as const, href: "/tours" },
+  { key: "about" as const, href: "/about" },
+  { key: "contact" as const, href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -62,16 +65,17 @@ export default function Navbar() {
                 pathname === link.href ? "text-forest-400" : "text-white/90"
               }`}
             >
-              {link.label}
+              {t.nav[link.key]}
             </Link>
           ))}
+          <LanguageSwitcher />
           <a
-            href="https://wa.me/50688888888"
+            href="https://wa.me/50685104507"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-forest-600 hover:bg-forest-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/30"
           >
-            Book Now
+            {t.nav.bookNow}
           </a>
         </div>
 
@@ -98,16 +102,19 @@ export default function Navbar() {
                   : "text-white/90 hover:text-forest-400"
               }`}
             >
-              {link.label}
+              {t.nav[link.key]}
             </Link>
           ))}
+          <div className="py-2">
+            <LanguageSwitcher />
+          </div>
           <a
-            href="https://wa.me/50688888888"
+            href="https://wa.me/50685104507"
             target="_blank"
             rel="noopener noreferrer"
             className="block bg-forest-600 hover:bg-forest-500 text-white px-6 py-3 rounded-full text-center font-semibold transition-all"
           >
-            Book Now
+            {t.nav.bookNow}
           </a>
         </div>
       )}

@@ -17,7 +17,7 @@ export default function ContactForm() {
     const whatsappMsg = encodeURIComponent(
       `Hello! My name is ${name}. I'm interested in: ${tour}. ${message}`
     );
-    window.open(`https://wa.me/50688888888?text=${whatsappMsg}`, "_blank");
+    window.open(`https://wa.me/50685104507?text=${whatsappMsg}`, "_blank");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
     form.reset();
@@ -69,7 +69,7 @@ export default function ContactForm() {
                   <div>
                     <p className="font-medium text-sm">Phone / WhatsApp</p>
                     <a
-                      href="tel:+50688888888"
+                      href="tel:+50685104507"
                       className="text-white/70 text-sm mt-1 hover:text-forest-400 transition-colors block"
                     >
                       +506 8888-8888

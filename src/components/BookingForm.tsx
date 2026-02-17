@@ -37,7 +37,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
         `Name: ${name}\n` +
         `Email: ${email}`
     );
-    window.open(`https://wa.me/50688888888?text=${msg}`, "_blank");
+    window.open(`https://wa.me/50685104507?text=${msg}`, "_blank");
   };
 
   const today = new Date();

@@ -10,7 +10,7 @@ const faqs = [
     questions: [
       {
         q: "How do I book a tour?",
-        a: "You can book directly through our website by selecting your preferred tour, choosing a date and time, and completing the reservation form. You can also contact us via WhatsApp at +506 8888-8888 or email us at info@rainforestexperiencescr.com. We recommend booking at least 24 hours in advance.",
+        a: "You can book directly through our website by selecting your preferred tour, choosing a date and time, and completing the reservation form. You can also contact us via WhatsApp at +506 8510-4507 or email us at info@rainforestexperiencescr.com. We recommend booking at least 24 hours in advance.",
       },
       {
         q: "What is the minimum number of people required?",

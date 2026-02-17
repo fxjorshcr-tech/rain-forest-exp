@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "@/i18n/context";
 
 const HERO_IMAGE =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-tour-visit.webp";
@@ -9,6 +10,8 @@ const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
       {/* Background image */}
@@ -30,34 +33,33 @@ export default function Hero() {
           {/* Left: Text */}
           <div>
             <span className="text-forest-400 text-sm md:text-base font-semibold tracking-[0.3em] uppercase mb-4 block">
-              La Fortuna, Costa Rica
+              {t.hero.location}
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Discover the
+              {t.hero.title1}
               <br />
-              Magic of{" "}
+              {t.hero.title2}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
-                the Rainforest
+                {t.hero.title3}
               </span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
-              Personalized tours with expert local guides. Experience wildlife,
-              waterfalls, volcanoes, and the breathtaking beauty of Costa Rica.
+              {t.hero.subtitle}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <a
                 href="#tours"
                 className="bg-forest-600 hover:bg-forest-500 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:shadow-xl hover:shadow-forest-600/30 hover:-translate-y-0.5 text-center"
               >
-                Explore Our Tours
+                {t.hero.exploreTours}
               </a>
               <a
-                href="https://wa.me/50688888888"
+                href="https://wa.me/50685104507"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white/40 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/10 text-center"
               >
-                Contact Us
+                {t.hero.contactUs}
               </a>
             </div>
           </div>

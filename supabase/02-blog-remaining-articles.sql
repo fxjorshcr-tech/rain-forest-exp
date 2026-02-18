@@ -17,7 +17,7 @@ INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, co
   '2026-01-21',
   7,
   ARRAY['sloth-tour', 'hanging-bridges']
-);
+) ON CONFLICT (slug) DO NOTHING;
 
 -- Article: arenal-rainforest-guide
 INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, content, content_es, image, date, read_time, related_tours) VALUES
@@ -33,7 +33,7 @@ INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, co
   '2026-01-28',
   8,
   ARRAY['hanging-bridges', 'volcano-hike', 'best-of-arenal']
-);
+) ON CONFLICT (slug) DO NOTHING;
 
 -- Article: birdwatching-tips-arenal
 INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, content, content_es, image, date, read_time, related_tours) VALUES
@@ -49,7 +49,7 @@ INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, co
   '2026-02-04',
   7,
   ARRAY['birdwatching', 'hanging-bridges']
-);
+) ON CONFLICT (slug) DO NOTHING;
 
 -- Article: protected-areas-costa-rica
 INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, content, content_es, image, date, read_time, related_tours) VALUES
@@ -65,5 +65,5 @@ INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, co
   '2026-02-18',
   9,
   ARRAY['rio-celeste', 'best-of-arenal']
-);
+) ON CONFLICT (slug) DO NOTHING;
 

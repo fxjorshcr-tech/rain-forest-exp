@@ -30,10 +30,19 @@ CREATE INDEX IF NOT EXISTS idx_rain_forest_exp_blog_date ON rain_forest_exp_blog
 -- Enable RLS (Row Level Security)
 ALTER TABLE rain_forest_exp_blog ENABLE ROW LEVEL SECURITY;
 
--- Public read-only policy
-CREATE POLICY "Public can read rain_forest_exp_blog"
-  ON rain_forest_exp_blog FOR SELECT
-  USING (active = true);
+-- Public read-only policy (skip if already exists)
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies
+    WHERE tablename = 'rain_forest_exp_blog'
+    AND policyname = 'Public can read rain_forest_exp_blog'
+  ) THEN
+    CREATE POLICY "Public can read rain_forest_exp_blog"
+      ON rain_forest_exp_blog FOR SELECT
+      USING (active = true);
+  END IF;
+END $$;
 
 -- =============================================
 -- Seed data — All articles
@@ -52,4 +61,4 @@ INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, co
   '2026-01-14',
   8,
   ARRAY['night-walk', 'sloth-tour']
-);
+) ON CONFLICT (slug) DO NOTHING;

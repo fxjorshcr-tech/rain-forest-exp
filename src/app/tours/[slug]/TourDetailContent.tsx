@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,8 +10,10 @@ import {
   Calendar,
   Check,
   ChevronRight,
+  ChevronLeft,
   Star,
   AlertCircle,
+  Camera,
 } from "lucide-react";
 import type { Tour } from "@/data/tours";
 import BookingForm from "@/components/BookingForm";
@@ -43,19 +46,79 @@ export default function TourDetailContent({
   const schedule = t.tourMeta.schedule;
   const maxGroup = t.tourMeta.maxGroup;
 
+  // Hero carousel state
+  const [heroIndex, setHeroIndex] = useState(0);
+  const gallery = tour.gallery.length > 0 ? tour.gallery : [tour.image];
+
+  const nextHero = useCallback(() => {
+    setHeroIndex((prev) => (prev + 1) % gallery.length);
+  }, [gallery.length]);
+
+  const prevHero = useCallback(() => {
+    setHeroIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+  }, [gallery.length]);
+
+  // Auto-advance hero carousel
+  useEffect(() => {
+    if (gallery.length <= 1) return;
+    const timer = setInterval(nextHero, 5000);
+    return () => clearInterval(timer);
+  }, [gallery.length, nextHero]);
+
   return (
     <main>
-      {/* Hero */}
-      <section className="relative h-[55vh] min-h-[400px] overflow-hidden">
-        <Image
-          src={tour.image}
-          alt={title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+      {/* Hero Carousel */}
+      <section className="relative h-[55vh] min-h-[400px] overflow-hidden group/hero">
+        {gallery.map((img, i) => (
+          <Image
+            key={img}
+            src={img}
+            alt={`${title} - ${i + 1}`}
+            fill
+            className={`object-cover transition-opacity duration-700 ${
+              i === heroIndex ? "opacity-100" : "opacity-0"
+            }`}
+            priority={i === 0}
+            sizes="100vw"
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
+
+        {/* Carousel controls */}
+        {gallery.length > 1 && (
+          <>
+            <button
+              onClick={prevHero}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full p-2 opacity-0 group-hover/hero:opacity-100 transition-opacity"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={nextHero}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full p-2 opacity-0 group-hover/hero:opacity-100 transition-opacity"
+              aria-label="Next image"
+            >
+              <ChevronRight size={24} />
+            </button>
+            {/* Dots */}
+            <div className="absolute bottom-28 sm:bottom-32 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+              {gallery.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    i === heroIndex
+                      ? "bg-white w-6"
+                      : "bg-white/50 hover:bg-white/70"
+                  }`}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
         <div className="absolute bottom-0 left-0 right-0 z-10 p-6 sm:p-10">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-2 text-sm text-white/70 mb-3">
@@ -134,6 +197,38 @@ export default function TourDetailContent({
                   ))}
                 </div>
               </div>
+
+              {/* Photo Gallery */}
+              {gallery.length > 1 && (
+                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Camera size={22} className="text-forest-600" />
+                    {locale === "es" ? "Fotos" : "Photos"}
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {gallery.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setHeroIndex(i)}
+                        className={`relative aspect-[4/3] rounded-xl overflow-hidden group/thumb ${
+                          i === heroIndex
+                            ? "ring-2 ring-forest-500 ring-offset-2"
+                            : ""
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt={`${title} - ${i + 1}`}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover/thumb:scale-110"
+                          sizes="(max-width: 640px) 50vw, 200px"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/20 transition-colors" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Details grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

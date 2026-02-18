@@ -527,6 +527,224 @@ At Rain Forest Experiences CR, our night walks through the forests of La Fortuna
 
 Whether it's the unforgettable gaze of a red-eyed tree frog, the eerie glow of bioluminescent fungi, or the soft call of a spectacled owl echoing through the canopy, a night in Costa Rica's rainforest will change the way you see the natural world forever.`,
     },
+    "sloths-costa-rica": {
+      title: "Sloths in Costa Rica: The Gentle Giants of the Canopy",
+      excerpt:
+        "Slow, silent, and impossibly charming — sloths are one of Costa Rica's most beloved animals. Learn about these fascinating creatures and where to find them in La Fortuna.",
+      content: `They move so slowly that algae grows on their fur, giving them a greenish tint that doubles as camouflage. They sleep up to 20 hours a day. And yet, sloths are among the most successful mammals in the tropical forests of Central and South America. In Costa Rica, they have become true ambassadors of the country's wildlife, captivating visitors from around the world.
+
+Costa Rica is home to two species of sloths: the two-toed sloth (Choloepus hoffmanni) and the three-toed sloth (Bradypus variegatus). Both can be found in the lush forests around La Fortuna, and while they may seem similar at first glance, they lead very different lives.
+
+## Two-Toed vs. Three-Toed: Knowing the Difference
+
+The three-toed sloth is the one most people picture — the adorable face with a permanent "smile," a compact body, and a short tail. They are strictly herbivores, feeding on leaves from a select group of trees. Three-toed sloths are diurnal, meaning they're active during the day, which makes them easier to spot on guided tours.
+
+The two-toed sloth, on the other hand, is larger, more muscular, and nocturnal. They have a more varied diet that includes fruits, insects, and even small lizards. Their longer arms and more prominent claws give them a different silhouette in the canopy. Spotting one during a night walk is always a special moment.
+
+## Masters of Energy Conservation
+
+Sloths are the ultimate energy conservers. Their incredibly slow metabolism — the lowest of any non-hibernating mammal — allows them to survive on a diet of leaves that would starve most other animals. They digest food so slowly that a single meal can take up to a month to process.
+
+This metabolic strategy extends to everything they do. Their body temperature fluctuates with the environment, they rarely move more than 40 meters in a day, and they descend from the canopy only once a week to defecate — a behavior that remains one of the great mysteries of sloth biology.
+
+## The Sloth Ecosystem
+
+A sloth is not just an animal — it's a walking ecosystem. Their coarse, grooved fur hosts a remarkable community of organisms: algae, fungi, beetles, cockroaches, and even moths that live exclusively in sloth fur. Scientists have discovered that sloth fur contains compounds with antibiotic, antifungal, and even anti-cancer properties, making sloths a subject of pharmaceutical research.
+
+The algae growing on their fur serves a dual purpose: it provides camouflage against predators like harpy eagles and jaguars, and it may also serve as a supplementary food source that sloths lick from their own fur.
+
+## Where to See Sloths in La Fortuna
+
+The forests around La Fortuna are prime sloth habitat. The abundance of cecropia trees — a favorite food of three-toed sloths — makes this area particularly productive for sloth spotting. On our Sloth & Wildlife Tour, we visit several proven locations where sloths are regularly found.
+
+The key to finding sloths is knowing what to look for. To the untrained eye, a sloth looks exactly like a clump of leaves or a termite nest. Our experienced guides use professional spotting scopes and binoculars to locate these masters of disguise, often pointing out sloths that visitors would never find on their own.
+
+## Conservation and Threats
+
+Despite their popularity, sloths face real threats in Costa Rica. Habitat fragmentation forces them to cross roads and power lines, leading to injuries and death. In La Fortuna, local conservation groups work to install wildlife bridges and rescue injured sloths for rehabilitation.
+
+At Rain Forest Experiences CR, we believe that responsible wildlife tourism plays a crucial role in sloth conservation. By helping people fall in love with these remarkable animals, we create advocates for the forests they depend on. Every tour is conducted with strict guidelines to minimize disturbance — we observe from a respectful distance, never touch the animals, and keep noise to a minimum.
+
+## A Moment You'll Never Forget
+
+There's something profoundly moving about watching a sloth in the wild. Perhaps it's their gentle nature, their impossibly calm expression, or the way they seem to exist in a different time dimension than the rest of us. Whatever it is, the moment you lock eyes with a sloth high in the canopy — through the lens of a professional scope that reveals every detail of their face — is a memory that stays with you forever.
+
+In a world that moves faster every day, sloths remind us that sometimes, slow is exactly the right speed.`,
+    },
+    "arenal-rainforest-guide": {
+      title: "The Arenal Rainforest: A Complete Guide to One of the World's Most Biodiverse Forests",
+      excerpt:
+        "The forests surrounding Arenal Volcano are among the richest ecosystems on the planet. Explore its layers, wildlife, and why La Fortuna is the perfect base for rainforest adventures.",
+      content: `Standing at the base of Arenal Volcano, surrounded by a living wall of green that stretches in every direction, it's easy to understand why Costa Rica has become synonymous with tropical rainforest. The Arenal region, centered around the town of La Fortuna, contains some of the most pristine and biologically rich forests remaining in Central America — a treasure that we have the privilege of sharing with visitors every day.
+
+The Arenal rainforest is classified as tropical wet forest, receiving between 3,000 and 5,000 millimeters of rainfall annually. This constant moisture, combined with warm temperatures and volcanic soils rich in minerals, creates the perfect conditions for an explosion of life that must be seen to be believed.
+
+## The Layers of the Rainforest
+
+One of the most fascinating aspects of the tropical rainforest is its vertical structure. Unlike temperate forests, the rainforest is organized into distinct layers, each with its own community of species.
+
+The emergent layer, reaching heights of 50 to 60 meters, is where the tallest trees break through the canopy to reach full sunlight. These giants include species like the ceiba (Ceiba pentandra), considered sacred by the ancient Maya, and the massive almendro (Dipteryx panamensis), whose fruits feed endangered great green macaws.
+
+Below sits the canopy, a dense, continuous ceiling of leaves at about 25 to 35 meters. This is where most of the forest's biodiversity is concentrated — a world of epiphytes, bromeliads, orchids, monkeys, and birds that many people never see from the ground. Our Hanging Bridges tour gives visitors a rare opportunity to walk through this layer at canopy level.
+
+The understory, filtered in dim green light, is home to shade-tolerant palms, heliconias with their striking red and yellow bracts, and a wealth of amphibians and reptiles. Finally, the forest floor — covered in decomposing leaves — teems with fungi, insects, and the seedlings of future giants waiting for their moment of light.
+
+## Wildlife of the Arenal Forest
+
+The biodiversity numbers for the Arenal region are staggering. Within the forests surrounding La Fortuna, scientists have documented over 500 species of birds, more than 100 species of mammals, approximately 135 species of reptiles and amphibians, and countless thousands of insect species.
+
+Some of the most iconic wildlife encounters in the Arenal forest include three species of monkeys — howler, white-faced capuchin, and spider monkey. The forest is also home to both species of Costa Rican sloths, three species of toucans, dozens of hummingbird species, and elusive cats like the ocelot, jaguarundi, and the arboreal margay.
+
+The rivers and streams that flow through the forest harbor their own communities, from spectacled caimans to dozens of fish species and the fascinating Jesus Christ lizard (Basiliscus plumifrons), which can literally run across the surface of water.
+
+## The Volcano's Influence
+
+Arenal Volcano has profoundly shaped the surrounding forest. The catastrophic eruption of 1968 destroyed everything on the western flank, creating a blank canvas that nature has been slowly reclaiming for nearly six decades. Walking through the 1968 lava flow during our Volcano Hike, you can witness the process of ecological succession in action — from pioneer lichens on bare rock to young secondary forest, all within a few hundred meters.
+
+The volcano's geothermal activity also creates unique microhabitats. Hot springs scattered throughout the region support thermophilic bacteria and create warm-water oases where tapirs, peccaries, and other mammals come to bathe. The mineral-rich volcanic soil supports faster plant growth than non-volcanic regions, contributing to the forest's extraordinary productivity.
+
+## Seasons and the Best Time to Visit
+
+While La Fortuna experiences rain throughout the year, there are distinct patterns worth understanding. The "dry season" (December to April) offers more sunny mornings and easier trail conditions. However, the "green season" (May to November) brings the forest to its most vibrant state — rivers swell, waterfalls reach their full glory, and many animal species are more active.
+
+For birdwatchers, the early months of the green season (May to July) coincide with breeding activity, when birds are most vocal and visible. For amphibian enthusiasts, the rainy months (September to November) are unbeatable, as frog activity peaks with the heaviest rainfall.
+
+## Why the Arenal Rainforest Matters
+
+Beyond its beauty, the Arenal rainforest provides essential ecosystem services. It acts as a massive carbon sink, helping regulate global climate. It filters and produces clean water for the region. It prevents erosion on the volcanic slopes. And it supports the livelihoods of thousands of people through sustainable tourism.
+
+At Rain Forest Experiences CR, we see ourselves as stewards of this incredible ecosystem. Every tour we lead is an opportunity not just to show the forest, but to create understanding and connection. When visitors experience the rainforest with a knowledgeable guide who can reveal its hidden wonders, they leave not just with memories, but with a deeper appreciation for why these forests must be protected.
+
+The Arenal rainforest is waiting. Come discover why this small corner of Costa Rica has become one of the most celebrated natural destinations on Earth.`,
+    },
+    "birdwatching-tips-arenal": {
+      title: "Birdwatching in Arenal: Essential Tips for an Unforgettable Experience",
+      excerpt:
+        "With over 500 species recorded in the Arenal region, this area is a birdwatcher's paradise. Here are the best tips, spots, and species to look for on your next trip.",
+      content: `Costa Rica is one of the world's top birdwatching destinations, and the Arenal region is its crown jewel. With over 500 species recorded in the forests, wetlands, and agricultural areas surrounding La Fortuna, this small area holds more bird species than the entire continent of Europe. Whether you're a seasoned lister or picking up binoculars for the first time, Arenal offers unforgettable birding experiences.
+
+After more than 13 years of guiding birdwatching tours in this region, I've learned that successful birding is about more than just showing up with binoculars. It's about understanding the birds' habits, knowing the right places and times, and having the patience to let the forest reveal its secrets. Here are my best tips for making the most of your birdwatching experience in Arenal.
+
+## Start Early — Very Early
+
+The golden rule of tropical birding: the early bird catches the bird. The first two hours after dawn — roughly 5:30 to 7:30 AM — are the most productive period of the day. This is when mixed-species flocks move through the canopy, fruiting trees are buzzing with activity, and territorial males are singing at their peak.
+
+On our birdwatching tours, we depart at 5:15 AM specifically to catch this window. The difference between birding at 6 AM and 9 AM is dramatic — you might see three times as many species in the early morning hours.
+
+That said, don't write off the afternoon entirely. From about 2:30 to 5:00 PM, bird activity picks up again as species prepare for the night. Raptors ride afternoon thermals, hummingbirds visit flowers, and frugivores make their last rounds of the day.
+
+## The Must-See Species of Arenal
+
+Every birder has their wish list, and Arenal delivers on most of them. Here are some of the species that make this region world-famous:
+
+The keel-billed toucan (Ramphastos sulfuratus) with its rainbow-colored bill is perhaps the most iconic bird of the region. They're social birds, often seen in small groups flying between tall trees in the morning. Their distinctive "krrrk-krrrk" call carries far through the forest.
+
+The resplendent quetzal (Pharomachrus mocinai), while more commonly associated with the cloud forests of Monteverde, can occasionally be found in the higher elevations around Arenal. Spotting one, with its iridescent green plumage and impossibly long tail feathers, is a once-in-a-lifetime experience.
+
+Motmots are a highlight for many visitors. The broad-billed motmot (Electron platyrhynchum) and the rufous motmot (Baryphthengus martii) are regularly seen during our tours. Their distinctive racket-tipped tails — which they swing like pendulums — make them instantly recognizable.
+
+For raptor enthusiasts, Arenal offers excellent opportunities. The ornate hawk-eagle (Spizaetus ornatus), the laughing falcon (Herpetotheres cachinnans), and several species of forest-falcons patrol the skies and forest edges.
+
+## Equipment That Makes a Difference
+
+You don't need to spend thousands on equipment, but having the right gear dramatically improves your experience. Here's what I recommend:
+
+Binoculars are essential. A pair with 8x or 10x magnification is ideal for forest birding. Higher magnification may seem appealing, but in the dense understory, a wider field of view (which lower magnification provides) helps you find and track moving birds much faster.
+
+On all our birdwatching tours, we provide professional-grade spotting scopes with 20-60x zoom. These allow guests to see incredible details — the individual barbs on a toucan's feather, the iridescent throat of a hummingbird, the subtle eye ring that distinguishes one flycatcher from another. The scope transforms birding from "I think I saw something green" to "I can see every detail of that bird's face."
+
+Clothing matters more than you might think. Avoid bright colors — especially white and red — as they alert birds to your presence. Earth tones (olive, brown, khaki) help you blend into the forest. Long sleeves and pants also protect against insects and thorny vegetation.
+
+## Habitat Diversity Is Your Friend
+
+One of Arenal's greatest advantages for birding is its diversity of habitats within a small area. In a single morning, you can visit:
+
+Forest interior, where you'll find antbirds, woodcreepers, and mixed-species flocks. The hanging bridges reserve is excellent for this, as the elevated walkways put you at canopy level where the action is.
+
+Forest edges and gaps, which attract tanagers, flycatchers, and seedeaters that prefer the boundary between forest and open areas. These transition zones are often the most species-rich spots.
+
+Rivers and streams, where you can spot the American dipper, green kingfisher, and the striking sunbittern with its spectacular wing display.
+
+Open areas and gardens, which are paradises for hummingbirds, tanagers, and euphonias. Many lodges around La Fortuna maintain feeding stations that attract incredible diversity.
+
+## Patience and Pishing
+
+Tropical birding requires a different approach than birding in temperate regions. Many tropical species are shy, skulking, and well-camouflaged. Patience is not just a virtue — it's a necessity.
+
+One technique that works remarkably well is called "pishing" — making soft, repetitive "psh-psh-psh" sounds that mimic the alarm calls of small birds. This often attracts curious individuals from surrounding vegetation, giving you brief but excellent views. Your guide will know when and how to use this technique effectively.
+
+Another powerful approach is simply standing still. In the rainforest, movement is what gives you away. If you remain motionless for 10 to 15 minutes in a productive spot, the forest comes alive around you as birds resume their normal activities, often approaching much closer than they would if you were walking.
+
+## Recording Your Sightings
+
+I always encourage guests to keep a list of species seen during the tour. Not only does it enhance the experience, but it also contributes to citizen science. Apps like eBird allow you to submit your observations, contributing to a global database that scientists use to track bird populations and migration patterns.
+
+At Rain Forest Experiences CR, we can help you identify every species we encounter. After more than a decade of birding in this region, we know the local species intimately — their calls, their habits, their preferred perches. Even if you can't see a bird, we can often identify it by its song, adding species to your list that you might otherwise miss.
+
+The birds of Arenal are waiting. Bring your curiosity, wake up early, and prepare to be amazed by one of the richest bird communities on the planet.`,
+    },
+    "protected-areas-costa-rica": {
+      title: "Protected Areas of Costa Rica: Guardians of the World's Most Precious Biodiversity",
+      excerpt:
+        "Costa Rica protects over 25% of its territory in national parks and reserves. Discover the most important protected areas and why this small country leads the world in conservation.",
+      content: `In a world where tropical forests are disappearing at alarming rates, Costa Rica stands as a beacon of hope. This small Central American nation — roughly the size of West Virginia — has achieved something remarkable: it protects over 25% of its territory in national parks, biological reserves, and wildlife refuges. Even more impressively, forest cover has increased from 21% in 1987 to over 52% today, making Costa Rica one of the only tropical countries to reverse deforestation.
+
+This conservation success didn't happen by accident. It's the result of decades of visionary policy, community engagement, and a national identity deeply tied to the natural world. For visitors exploring Costa Rica's protected areas, every trail walked and every animal observed is a testament to what's possible when a country commits to preserving its natural heritage.
+
+## The National Park System: A Conservation Revolution
+
+Costa Rica's national park system was born in 1969 with the creation of the Cabo Blanco Absolute Nature Reserve on the Nicoya Peninsula. Since then, the system has grown to include 30 national parks, 8 biological reserves, 71 wildlife refuges, and numerous other protected categories — covering approximately 26% of the national territory.
+
+The system was largely shaped by the vision of two remarkable individuals: Olof Wessberg and Karen Mogensen, a Swedish-Danish couple who fell in love with Costa Rica's forests and fought to protect them, and Álvaro Ugalde, who as a young park ranger became the driving force behind the expansion of the national park system throughout the 1970s and 1980s.
+
+## Arenal Volcano National Park
+
+For visitors based in La Fortuna, Arenal Volcano National Park is the most accessible and iconic protected area. Established in 1991, the park encompasses 12,124 hectares of primary and secondary forest surrounding Costa Rica's youngest and most famous volcano.
+
+The park protects the critical watershed of the Arenal reservoir, which generates a significant portion of Costa Rica's hydroelectric power. It's also a vital biological corridor connecting lowland forests to the Monteverde cloud forest, allowing species like the resplendent quetzal and the three-wattled bellbird to migrate between elevations.
+
+During our Arenal Volcano Hike, visitors walk through the park's 1968 lava flow, witnessing firsthand how nature reclaims even the most devastated landscapes. The contrast between the bare volcanic rock and the surrounding mature forest is a powerful lesson in ecological resilience.
+
+## Tenorio Volcano National Park and Rio Celeste
+
+One of Costa Rica's most magical protected areas lies about two hours from La Fortuna: Tenorio Volcano National Park, home to the legendary Rio Celeste. This celestial blue river gets its otherworldly color from a chemical reaction between volcanic minerals — specifically, the collision of two clear rivers carrying different mineral loads creates nanoparticles that scatter blue light.
+
+The 18,402-hectare park protects primary tropical rainforest on the flanks of two volcanic peaks. The 6-kilometer trail to the Celeste waterfall passes through some of the most pristine forest in the country, with opportunities to spot tapirs, monkeys, toucans, and the brilliant red-headed barbet.
+
+Our Rio Celeste Adventure takes visitors through this stunning park, combining a challenging but rewarding hike with world-class nature observation.
+
+## Corcovado National Park: The Crown Jewel
+
+National Geographic once called Corcovado "the most biologically intense place on Earth." Located on the remote Osa Peninsula in southwestern Costa Rica, this 42,469-hectare park protects the largest remaining tract of Pacific lowland tropical rainforest in Central America.
+
+Corcovado is home to all four of Costa Rica's monkey species, the country's largest population of scarlet macaws, both species of sloths, jaguars, pumas, ocelots, four species of sea turtles, and an estimated 2.5% of the world's total biodiversity. Walking its trails feels like stepping back in time to a forest that has remained unchanged for millennia.
+
+## Monteverde Cloud Forest Reserve
+
+Perched at 1,400 meters in the Tilarán mountain range, Monteverde protects one of the world's most unique ecosystems: the tropical cloud forest. Here, persistent clouds and mist create a cool, perpetually damp environment draped in moss, ferns, and orchids — Monteverde alone has over 500 species of orchids.
+
+The reserve is world-famous as a habitat for the resplendent quetzal and the endangered three-wattled bellbird. Its six ecological zones support more than 400 bird species, 100 mammal species, and an estimated 3,000 plant species.
+
+## Manuel Antonio National Park
+
+Despite being the smallest national park in Costa Rica at just 1,983 hectares, Manuel Antonio is one of the most visited and most beloved. The park combines pristine white-sand beaches with tropical forest, creating stunning landscapes where monkeys play in the trees above crystal-clear waters.
+
+The park is one of the easiest places in Costa Rica to see white-faced capuchin monkeys, two-toed sloths, iguanas, and the Central American squirrel monkey — an endangered species found only in this region.
+
+## The Payments for Ecosystem Services Program
+
+One of Costa Rica's most innovative conservation tools is the PSA (Pagos por Servicios Ambientales) program, established in 1997. Under this program, landowners receive direct payments from the government for maintaining forest on their properties, recognizing that standing forests provide valuable services: carbon sequestration, watershed protection, biodiversity conservation, and scenic beauty.
+
+The program has been remarkably successful, incentivizing the conservation of over 1.3 million hectares of private land. Many of the reserves we visit on our tours around La Fortuna are private properties participating in this program — proof that conservation and community development can go hand in hand.
+
+## How Tourism Supports Conservation
+
+Every visitor who explores Costa Rica's protected areas contributes directly to their preservation. Park entrance fees fund management, research, and community programs. Tourism creates economic incentives for local communities to protect rather than exploit their natural resources.
+
+At Rain Forest Experiences CR, we see this connection every day. The forests that sustain our tours — and the livelihoods of everyone involved — are only possible because Costa Rica chose a different path decades ago. When we guide visitors through the Arenal forest, across hanging bridges in primary forest, or along volcanic trails, we're not just showing them beautiful scenery. We're showing them what happens when a country decides that nature is worth more standing than cut.
+
+Costa Rica proves that even a small country can make a big difference. And every visitor who experiences these protected areas becomes part of that story.`,
+    },
   },
 
   // Footer

@@ -44,6 +44,7 @@ export default function ArticleContent({ slug }: { slug: string }) {
   // Parse markdown-like content into sections
   const renderContent = (content: string) => {
     const parts = content.split("\n\n");
+    let subtitleRendered = false;
     return parts.map((part, index) => {
       if (part.startsWith("## ")) {
         return (
@@ -53,6 +54,18 @@ export default function ArticleContent({ slug }: { slug: string }) {
           >
             {part.replace("## ", "")}
           </h2>
+        );
+      }
+      // First paragraph is the subtitle/intro
+      if (!subtitleRendered) {
+        subtitleRendered = true;
+        return (
+          <p
+            key={index}
+            className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 font-medium border-l-4 border-forest-500 pl-5 italic"
+          >
+            {part}
+          </p>
         );
       }
       return (
@@ -71,31 +84,33 @@ export default function ArticleContent({ slug }: { slug: string }) {
           src={article.image}
           alt={articleContent.title}
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         <div className="relative z-10 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-12">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-forest-400 hover:text-forest-300 text-sm font-medium mb-4 transition-colors"
-          >
-            <ArrowLeft size={16} />
-            {b.backToBlog}
-          </Link>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
-            {articleContent.title}
-          </h1>
-          <div className="flex items-center gap-4 mt-4 text-white/70 text-sm">
-            <span className="flex items-center gap-1.5">
-              <Calendar size={14} />
-              {formattedDate}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock size={14} />
-              {article.readTime} {b.minRead}
-            </span>
+          <div className="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-5 sm:px-8 sm:py-6">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-forest-400 hover:text-forest-300 text-sm font-medium mb-4 transition-colors"
+            >
+              <ArrowLeft size={16} />
+              {b.backToBlog}
+            </Link>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+              {articleContent.title}
+            </h1>
+            <div className="flex items-center gap-4 mt-4 text-white/70 text-sm">
+              <span className="flex items-center gap-1.5">
+                <Calendar size={14} />
+                {formattedDate}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Clock size={14} />
+                {article.readTime} {b.minRead}
+              </span>
+            </div>
           </div>
         </div>
       </section>

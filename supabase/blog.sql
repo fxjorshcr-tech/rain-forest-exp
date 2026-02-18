@@ -36,7 +36,7 @@ CREATE POLICY "Public can read rain_forest_exp_blog"
   USING (active = true);
 
 -- =============================================
--- Seed data — First article
+-- Seed data — All articles
 -- =============================================
 
 INSERT INTO rain_forest_exp_blog (slug, title, title_es, excerpt, excerpt_es, content, content_es, image, date, read_time, related_tours) VALUES

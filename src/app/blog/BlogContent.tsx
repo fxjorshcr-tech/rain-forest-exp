@@ -21,24 +21,26 @@ export default function BlogContent() {
           src={HERO_IMAGE}
           alt="Blue Jeans Poison Dart Frog — Costa Rica"
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-12">
-          <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase block mb-3">
-            {b.label}
-          </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-            {b.title1}{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
-              {b.title2}
+          <div className="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-5 sm:px-8 sm:py-6 max-w-2xl">
+            <span className="text-forest-400 font-semibold text-sm tracking-[0.2em] uppercase block mb-3">
+              {b.label}
             </span>
-          </h1>
-          <p className="mt-3 text-white/80 max-w-2xl text-base sm:text-lg">
-            {b.subtitle}
-          </p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              {b.title1}{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-400 to-forest-300">
+                {b.title2}
+              </span>
+            </h1>
+            <p className="mt-3 text-white/90 max-w-2xl text-base sm:text-lg">
+              {b.subtitle}
+            </p>
+          </div>
         </div>
       </section>
 

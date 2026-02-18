@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,8 +10,10 @@ import {
   Calendar,
   Check,
   ChevronRight,
+  ChevronLeft,
   Star,
   AlertCircle,
+  Camera,
 } from "lucide-react";
 import type { Tour } from "@/data/tours";
 import BookingForm from "@/components/BookingForm";
@@ -43,10 +46,29 @@ export default function TourDetailContent({
   const schedule = t.tourMeta.schedule;
   const maxGroup = t.tourMeta.maxGroup;
 
+  // Gallery carousel state
+  const gallery = tour.gallery.length > 0 ? tour.gallery : [tour.image];
+  const [currentImg, setCurrentImg] = useState(0);
+
+  const nextImg = useCallback(() => {
+    setCurrentImg((prev) => (prev + 1) % gallery.length);
+  }, [gallery.length]);
+
+  const prevImg = useCallback(() => {
+    setCurrentImg((prev) => (prev - 1 + gallery.length) % gallery.length);
+  }, [gallery.length]);
+
+  // Auto-advance gallery carousel
+  useEffect(() => {
+    if (gallery.length <= 1) return;
+    const timer = setInterval(nextImg, 5000);
+    return () => clearInterval(timer);
+  }, [gallery.length, nextImg]);
+
   return (
     <main>
-      {/* Hero */}
-      <section className="relative h-[55vh] min-h-[400px] overflow-hidden">
+      {/* Hero - static image, taller */}
+      <section className="relative h-[65vh] min-h-[450px] overflow-hidden">
         <Image
           src={tour.image}
           alt={title}
@@ -117,6 +139,72 @@ export default function TourDetailContent({
                   ))}
                 </div>
               </div>
+
+              {/* Photo Gallery Carousel */}
+              {gallery.length > 1 && (
+                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Camera size={22} className="text-forest-600" />
+                    {locale === "es" ? "Fotos" : "Photos"}
+                  </h2>
+                  {/* Main carousel image */}
+                  <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-4 group/carousel">
+                    {gallery.map((img, i) => (
+                      <Image
+                        key={img}
+                        src={img}
+                        alt={`${title} - ${i + 1}`}
+                        fill
+                        className={`object-cover transition-opacity duration-500 ${
+                          i === currentImg ? "opacity-100" : "opacity-0"
+                        }`}
+                        sizes="(max-width: 1024px) 100vw, 66vw"
+                      />
+                    ))}
+                    {/* Carousel controls */}
+                    <button
+                      onClick={prevImg}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full p-2 opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft size={22} />
+                    </button>
+                    <button
+                      onClick={nextImg}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full p-2 opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight size={22} />
+                    </button>
+                    {/* Counter */}
+                    <div className="absolute bottom-3 right-3 z-10 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full">
+                      {currentImg + 1} / {gallery.length}
+                    </div>
+                  </div>
+                  {/* Thumbnails */}
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {gallery.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setCurrentImg(i)}
+                        className={`relative w-20 h-14 flex-shrink-0 rounded-lg overflow-hidden transition-all ${
+                          i === currentImg
+                            ? "ring-2 ring-forest-500 ring-offset-1 opacity-100"
+                            : "opacity-60 hover:opacity-100"
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt={`${title} - ${i + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Highlights */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">

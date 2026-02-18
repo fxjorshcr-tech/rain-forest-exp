@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getBlogArticles, getBlogArticleBySlug } from "@/data/blog";
 import ArticleContent from "./ArticleContent";
 
+export const revalidate = 60;
+
 type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "Explore stories, tips, and insights about Costa Rica's incredible biodiversity. Learn about the rainforest, wildlife, and adventure from our expert guides in La Fortuna.",
 };
 
+export const revalidate = 60; // refresh data every 60 seconds
+
 export default async function BlogPage() {
   const articles = await getBlogArticles();
   return <BlogContent articles={articles} />;

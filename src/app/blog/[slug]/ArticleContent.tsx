@@ -4,22 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, ArrowLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/i18n/context";
-import { blogArticles } from "@/data/blog";
+import type { BlogArticle } from "@/data/blog";
 import { tours } from "@/data/tours";
 
-export default function ArticleContent({ slug }: { slug: string }) {
+export default function ArticleContent({
+  article,
+}: {
+  article: BlogArticle | undefined;
+}) {
   const { t, locale } = useLanguage();
   const b = t.blog;
 
-  const article = blogArticles.find((a) => a.slug === slug);
-  const articleContent = (
-    t.blogArticles as Record<
-      string,
-      { title: string; excerpt: string; content: string }
-    >
-  )[slug];
-
-  if (!article || !articleContent) {
+  if (!article) {
     return (
       <main className="pt-32 pb-20 text-center">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -32,18 +28,25 @@ export default function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
-  const formattedDate = new Date(article.date + "T12:00:00").toLocaleDateString(
-    locale === "es" ? "es-CR" : "en-US",
-    { year: "numeric", month: "long", day: "numeric" }
-  );
+  const title = locale === "es" ? article.titleEs : article.title;
+  const content = locale === "es" ? article.contentEs : article.content;
+
+  const formattedDate = new Date(
+    article.date + "T12:00:00"
+  ).toLocaleDateString(locale === "es" ? "es-CR" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   const relatedTours = tours.filter((tour) =>
-    article.relatedTourSlugs.includes(tour.slug)
+    article.relatedTours.includes(tour.slug)
   );
 
   // Parse markdown-like content into sections
-  const renderContent = (content: string) => {
-    const parts = content.split("\n\n");
+  const renderContent = (text: string) => {
+    const parts = text.split("\n\n");
+    let subtitleRendered = false;
     return parts.map((part, index) => {
       if (part.startsWith("## ")) {
         return (
@@ -53,6 +56,18 @@ export default function ArticleContent({ slug }: { slug: string }) {
           >
             {part.replace("## ", "")}
           </h2>
+        );
+      }
+      // First paragraph is the subtitle/intro
+      if (!subtitleRendered) {
+        subtitleRendered = true;
+        return (
+          <p
+            key={index}
+            className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 font-medium border-l-4 border-forest-500 pl-5 italic"
+          >
+            {part}
+          </p>
         );
       }
       return (
@@ -69,33 +84,35 @@ export default function ArticleContent({ slug }: { slug: string }) {
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <Image
           src={article.image}
-          alt={articleContent.title}
+          alt={title}
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         <div className="relative z-10 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-12">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-forest-400 hover:text-forest-300 text-sm font-medium mb-4 transition-colors"
-          >
-            <ArrowLeft size={16} />
-            {b.backToBlog}
-          </Link>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
-            {articleContent.title}
-          </h1>
-          <div className="flex items-center gap-4 mt-4 text-white/70 text-sm">
-            <span className="flex items-center gap-1.5">
-              <Calendar size={14} />
-              {formattedDate}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock size={14} />
-              {article.readTime} {b.minRead}
-            </span>
+          <div className="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-5 sm:px-8 sm:py-6">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-forest-400 hover:text-forest-300 text-sm font-medium mb-4 transition-colors"
+            >
+              <ArrowLeft size={16} />
+              {b.backToBlog}
+            </Link>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+              {title}
+            </h1>
+            <div className="flex items-center gap-4 mt-4 text-white/70 text-sm">
+              <span className="flex items-center gap-1.5">
+                <Calendar size={14} />
+                {formattedDate}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Clock size={14} />
+                {article.readTime} {b.minRead}
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -104,7 +121,7 @@ export default function ArticleContent({ slug }: { slug: string }) {
       <section className="py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
-            {renderContent(articleContent.content)}
+            {renderContent(content)}
           </div>
         </div>
       </section>
@@ -124,7 +141,7 @@ export default function ArticleContent({ slug }: { slug: string }) {
                     { title: string; shortTitle: string; description: string }
                   >
                 )[tour.slug];
-                const title = td?.title ?? tour.title;
+                const tourTitle = td?.title ?? tour.title;
                 const description = td?.description ?? tour.description;
 
                 return (
@@ -136,7 +153,7 @@ export default function ArticleContent({ slug }: { slug: string }) {
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={tour.image}
-                        alt={title}
+                        alt={tourTitle}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -150,7 +167,7 @@ export default function ArticleContent({ slug }: { slug: string }) {
                     </div>
                     <div className="p-5">
                       <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-forest-700 transition-colors">
-                        {title}
+                        {tourTitle}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 mb-3">
                         {description}

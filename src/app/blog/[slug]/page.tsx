@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { blogArticles } from "@/data/blog";
+import { getBlogArticles, getBlogArticleBySlug } from "@/data/blog";
 import ArticleContent from "./ArticleContent";
-import { en } from "@/i18n/en";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {
-  return blogArticles.map((article) => ({ slug: article.slug }));
+  const articles = await getBlogArticles();
+  return articles.map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({
@@ -15,24 +15,18 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = blogArticles.find((a) => a.slug === slug);
-  const content = (
-    en.blogArticles as Record<
-      string,
-      { title: string; excerpt: string; content: string }
-    >
-  )[slug];
+  const article = await getBlogArticleBySlug(slug);
 
-  if (!article || !content) {
+  if (!article) {
     return { title: "Article Not Found | Rain Forest Experiences CR" };
   }
 
   return {
-    title: `${content.title} | Rain Forest Experiences CR`,
-    description: content.excerpt,
+    title: `${article.title} | Rain Forest Experiences CR`,
+    description: article.excerpt,
     openGraph: {
-      title: content.title,
-      description: content.excerpt,
+      title: article.title,
+      description: article.excerpt,
       images: [{ url: article.image }],
     },
   };
@@ -44,5 +38,6 @@ export default async function ArticlePage({
   params: Params;
 }) {
   const { slug } = await params;
-  return <ArticleContent slug={slug} />;
+  const article = await getBlogArticleBySlug(slug);
+  return <ArticleContent article={article} />;
 }

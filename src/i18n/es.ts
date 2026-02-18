@@ -485,57 +485,9 @@ export const es: typeof en = {
     relatedTours: "Tours Relacionados",
     shareArticle: "Compartir este artículo",
     minRead: "min de lectura",
+    noArticles: "No hay artículos disponibles aún. ¡Vuelve pronto!",
   },
 
-  // Blog articles
-  blogArticles: {
-    "nocturnal-diversity-costa-rica": {
-      title: "La Diversidad Nocturna de Costa Rica: Un Mundo Oculto Cobra Vida",
-      excerpt:
-        "Cuando el sol se pone sobre el dosel del bosque lluvioso, un mundo completamente diferente despierta. Descubre las fascinantes criaturas que dominan la noche en los bosques tropicales de Costa Rica.",
-      content: `Cuando los últimos rayos de sol desaparecen detrás de la silueta volcánica del Arenal, algo mágico sucede en el bosque lluvioso. El coro diurno de monos aulladores y tucanes da paso a una sinfonía completamente diferente — una compuesta por ranas arborícolas, chotacabras y el susurro de mamíferos nocturnos que comienzan sus rutinas nocturnas.
-
-Costa Rica, a pesar de cubrir solo el 0.03% de la superficie terrestre, alberga casi el 6% de la biodiversidad mundial. Y una porción significativa de esa riqueza solo se revela después del anochecer. Para quienes se atreven a adentrarse en el bosque de noche, las recompensas son extraordinarias.
-
-## Las Estrellas de la Noche: Anfibios
-
-Los gobernantes indiscutibles del mundo nocturno de Costa Rica son sus anfibios. Con más de 200 especies de ranas y sapos, el país es un paraíso para los entusiastas de la herpetología. Entre ellas, la rana de ojos rojos (Agalychnis callidryas) destaca como un ícono — sus vívidos ojos carmesí, flancos azul eléctrico y patas naranjas la convierten en uno de los animales más fotografiados del trópico.
-
-Pero la rana de ojos rojos es solo el comienzo. Las ranas de cristal (familia Centrolenidae), con su piel translúcida que revela sus órganos internos, se aferran al envés de las hojas cerca de los arroyos. Las ranas venenosas (Dendrobatidae), incluyendo la llamativa rana blue jeans (Oophaga pumilio), exhiben sus colores de advertencia tóxica incluso en la tenue luz del suelo del bosque.
-
-Durante nuestras caminatas nocturnas en La Fortuna, regularmente encontramos de 8 a 12 especies de ranas en una sola salida — cada una con su propio canto único, coloración y estrategia de supervivencia.
-
-## Aves Nocturnas: Cazadores Silenciosos del Dosel
-
-Aunque Costa Rica es famosa por sus más de 900 especies de aves, muchas de las más fascinantes son las que nunca verás durante el día. El nictibio común (Nyctibius griseus), maestro del camuflaje, pasa el día inmóvil sobre una rama rota, imitando perfectamente la madera muerta. De noche, sus enormes ojos amarillos escanean la oscuridad en busca de insectos voladores.
-
-Los búhos son otro punto destacado de nuestras excursiones nocturnas. El búho de anteojos (Pulsatrix perspicillata), con sus distintivas marcas faciales, es uno de los búhos más grandes del neotrópico. El diminuto mochuelo centroamericano (Glaucidium griseiceps) puede ser pequeño, pero es un feroz depredador de insectos y pequeños vertebrados.
-
-## Insectos: Los Verdaderos Trabajadores del Turno Nocturno
-
-La diversidad de insectos nocturnos en el bosque lluvioso es asombrosa. Saltamontes que imitan hojas, insectos palo que pueden alcanzar 30 centímetros de longitud y escarabajos que exhiben bioluminiscencia son solo algunas de las maravillas que encontramos regularmente.
-
-Quizás lo más impresionante son las mariposas y polillas nocturnas. La Morpho Azul (Morpho peleides), aunque principalmente diurna, ocasionalmente revolotea por el bosque al atardecer. Mientras tanto, las polillas esfinge se suspenden como colibríes frente a las flores que florecen de noche, desenrollando sus lenguas para alcanzar fuentes de néctar profundas.
-
-## Mamíferos Bajo la Luz de la Luna
-
-Varios de los mamíferos más carismáticos de Costa Rica son predominantemente nocturnos. El kinkajú (Potos flavus), frecuentemente llamado "oso mielero," se mueve por el dosel de noche alimentándose de frutas y néctar. Con su cola prensil y grandes ojos redondos, es un avistamiento favorito en nuestros tours nocturnos.
-
-El tamandúa norteño (Tamandua mexicana), un oso hormiguero de tamaño mediano, usa sus poderosas garras y larga lengua pegajosa para asaltar termiteros y hormigueros bajo la protección de la oscuridad. Y si tienes mucha suerte, podrías avistar un margay (Leopardus wiedii), uno de los pocos gatos salvajes especializados para la vida arbórea, acechando presas entre las copas de los árboles.
-
-## Bioluminiscencia: El Espectáculo de Luces de la Naturaleza
-
-Uno de los aspectos más mágicos del bosque lluvioso nocturno es la bioluminiscencia. Ciertas especies de hongos que crecen en troncos en descomposición emiten un brillo etéreo verdoso, creando diminutos puntos de luz esparcidos por el suelo del bosque. Los escarabajos elátéridos llevan sus propias linternas, produciendo luz desde órganos en su tórax. Y en noches afortunadas, encontramos el esquivo gusano ferrocarril (Phrixothrix), que puede producir luz roja y verde simultáneamente.
-
-## Por Qué las Caminatas Nocturnas Importan
-
-Experimentar el bosque lluvioso nocturno no es solo emocionante — es educativo. Comprender que el ecosistema opera las 24 horas del día, con comunidades de especies completamente diferentes ocupando los mismos espacios en diferentes momentos, da a los visitantes una apreciación mucho más profunda de la biodiversidad tropical.
-
-En Rain Forest Experiences CR, nuestras caminatas nocturnas por los bosques de La Fortuna están diseñadas para revelar este mundo oculto de manera segura y memorable. Con más de 13 años de experiencia, Gabriel y su equipo saben exactamente dónde buscar, qué llamados escuchar y cómo avistar las criaturas que la mayoría de los visitantes pasarían de largo.
-
-Ya sea la mirada inolvidable de una rana de ojos rojos, el brillo etéreo de hongos bioluminiscentes, o el suave llamado de un búho de anteojos resonando por el dosel, una noche en el bosque lluvioso de Costa Rica cambiará para siempre la forma en que ves el mundo natural.`,
-    },
-  },
 
   // Footer
   footer: {

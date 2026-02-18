@@ -477,56 +477,7 @@ export const en = {
     relatedTours: "Related Tours",
     shareArticle: "Share this article",
     minRead: "min read",
-  },
-
-  // Blog articles
-  blogArticles: {
-    "nocturnal-diversity-costa-rica": {
-      title: "The Nocturnal Diversity of Costa Rica: A Hidden World Comes Alive",
-      excerpt:
-        "When the sun sets over the rainforest canopy, a completely different world awakens. Discover the fascinating creatures that rule the night in Costa Rica's tropical forests.",
-      content: `When the last rays of sunlight disappear behind the volcanic silhouette of Arenal, something magical happens in the rainforest. The daytime chorus of howler monkeys and toucans gives way to an entirely different symphony — one composed of tree frogs, nightjars, and the rustling of nocturnal mammals beginning their nightly routines.
-
-Costa Rica, despite covering only 0.03% of the Earth's surface, harbors nearly 6% of the world's biodiversity. And a significant portion of that richness only reveals itself after dark. For those willing to venture into the forest at night, the rewards are extraordinary.
-
-## The Stars of the Night: Amphibians
-
-The undisputed rulers of Costa Rica's nocturnal world are its amphibians. With over 200 species of frogs and toads, the country is a paradise for herpetology enthusiasts. Among them, the red-eyed tree frog (Agalychnis callidryas) stands out as an icon — its vivid crimson eyes, electric blue flanks, and orange feet make it one of the most photographed animals in the tropics.
-
-But the red-eyed tree frog is just the beginning. The glass frogs (family Centrolenidae), with their translucent skin that reveals their internal organs, cling to the undersides of leaves near streams. The poison dart frogs (Dendrobatidae), including the striking blue jeans frog (Oophaga pumilio), display their toxic warning colors even in the dim light of the forest floor.
-
-During our night walks in La Fortuna, we regularly encounter 8 to 12 species of frogs in a single outing — each with its own unique call, coloration, and survival strategy.
-
-## Nocturnal Birds: Silent Hunters of the Canopy
-
-While Costa Rica is famous for its 900+ bird species, many of the most fascinating are the ones you'll never see during the day. The common potoo (Nyctibius griseus), master of camouflage, spends the day motionless on a broken branch, perfectly mimicking dead wood. At night, its enormous yellow eyes scan the darkness for flying insects.
-
-Owls are another highlight of our nocturnal excursions. The spectacled owl (Pulsatrix perspicillata), with its distinctive facial markings, is one of the largest owls in the neotropics. The tiny Central American pygmy owl (Glaucidium griseiceps) may be small, but it's a fierce predator of insects and small vertebrates.
-
-## Insects: The True Nightshift Workers
-
-The sheer diversity of nocturnal insects in the rainforest is staggering. Leaf-mimicking katydids, walking sticks that can reach 30 centimeters in length, and beetles displaying bioluminescence are just a few of the wonders we encounter regularly.
-
-Perhaps most impressive are the nocturnal butterflies and moths. The Blue Morpho (Morpho peleides), though primarily diurnal, occasionally flutters through the evening forest. Meanwhile, hawk moths hover like hummingbirds in front of night-blooming flowers, their tongues uncoiling to reach deep nectar sources.
-
-## Mammals Under the Moonlight
-
-Several of Costa Rica's most charismatic mammals are predominantly nocturnal. The kinkajou (Potos flavus), often called the "honey bear," moves through the canopy at night feeding on fruit and nectar. With its prehensile tail and large, round eyes, it's a favorite sighting on our night tours.
-
-The northern tamandua (Tamandua mexicana), a medium-sized anteater, uses its powerful claws and long sticky tongue to raid termite mounds and ant nests under cover of darkness. And if you're very lucky, you might spot a margay (Leopardus wiedii), one of the few wild cats specialized for arboreal life, stalking prey through the treetops.
-
-## Bioluminescence: Nature's Light Show
-
-One of the most magical aspects of the nocturnal rainforest is bioluminescence. Certain species of fungi growing on decaying logs emit an ethereal greenish glow, creating tiny points of light scattered across the forest floor. Click beetles carry their own lanterns, producing light from organs on their thorax. And on lucky nights, we encounter the elusive railroad worm (Phrixothrix), which can produce both red and green light simultaneously.
-
-## Why Night Walks Matter
-
-Experiencing the nocturnal rainforest isn't just thrilling — it's educational. Understanding that the ecosystem operates 24 hours a day, with entirely different communities of species occupying the same spaces at different times, gives visitors a much deeper appreciation of tropical biodiversity.
-
-At Rain Forest Experiences CR, our night walks through the forests of La Fortuna are designed to reveal this hidden world safely and memorably. With over 13 years of experience, Gabriel and his team know exactly where to look, which calls to listen for, and how to spot the creatures that most visitors would walk right past.
-
-Whether it's the unforgettable gaze of a red-eyed tree frog, the eerie glow of bioluminescent fungi, or the soft call of a spectacled owl echoing through the canopy, a night in Costa Rica's rainforest will change the way you see the natural world forever.`,
-    },
+    noArticles: "No articles available yet. Check back soon!",
   },
 
   // Footer

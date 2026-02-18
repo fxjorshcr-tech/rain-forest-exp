@@ -2,6 +2,8 @@ import { getTours } from "@/data/tours";
 import type { Metadata } from "next";
 import ToursPageContent from "./ToursPageContent";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Tours | Rain Forest Experiences CR",
   description:

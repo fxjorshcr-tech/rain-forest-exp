@@ -16,6 +16,7 @@ const navLinks = [
   { key: "tours" as const, href: "/tours" },
   { key: "about" as const, href: "/about" },
   { key: "contact" as const, href: "/contact" },
+  { key: "blog" as const, href: "/blog" },
 ];
 
 export default function Navbar() {
@@ -62,7 +63,9 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`hover:text-forest-400 transition-colors text-sm font-medium tracking-wide uppercase ${
-                pathname === link.href ? "text-forest-400" : "text-white/90"
+                (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)))
+                  ? "text-forest-400"
+                  : "text-white/90"
               }`}
             >
               {t.nav[link.key]}
@@ -97,7 +100,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`block transition-colors text-base font-medium py-2 ${
-                pathname === link.href
+                (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)))
                   ? "text-forest-400"
                   : "text-white/90 hover:text-forest-400"
               }`}

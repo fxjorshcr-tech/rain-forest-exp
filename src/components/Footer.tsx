@@ -25,6 +25,7 @@ export default function Footer() {
     { label: f.aboutUs, href: "/about" },
     { label: f.contact, href: "/contact" },
     { label: f.faq, href: "/faq" },
+    { label: f.blog, href: "/blog" },
   ];
 
   return (
@@ -120,7 +121,7 @@ export default function Footer() {
             {/* Social */}
             <div className="mt-6 flex items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/rainforestexperiences?igsh=bWZ6MGVpbGhnMHN2&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-forest-600 transition-colors"
@@ -129,7 +130,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/17FSuN8q93/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-forest-600 transition-colors"

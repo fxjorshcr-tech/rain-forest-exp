@@ -67,13 +67,13 @@ export default function TourDetailContent({
 
   return (
     <main>
-      {/* Hero - static image, taller */}
-      <section className="relative h-[65vh] min-h-[450px] overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[45vh] min-h-[320px] overflow-hidden">
         <Image
-          src={tour.image}
+          src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-tour-visit.webp"
           alt={title}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
           sizes="100vw"
         />

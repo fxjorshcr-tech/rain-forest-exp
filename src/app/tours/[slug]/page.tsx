@@ -3,6 +3,8 @@ import { getTours, getTourBySlug } from "@/data/tours";
 import type { Metadata } from "next";
 import TourDetailContent from "./TourDetailContent";
 
+export const revalidate = 60;
+
 const BASE_URL = "https://www.rainforestexperiencescr.com";
 
 export async function generateStaticParams() {

@@ -358,6 +358,16 @@ export const en = {
       "Personalized adventures with a certified local guide born and raised in La Fortuna. Small groups, professional equipment, and over 10 years of experience sharing the magic of the Arenal rainforest. Pick your favorite and let's go.",
   },
 
+  // Thank you modal
+  thankYouModal: {
+    title: "Thank You!",
+    messageEn:
+      "Thank you for writing to us! We will get back to you as soon as possible.",
+    messageEs:
+      "Gracias por escribirnos! Te responderemos lo antes posible.",
+    close: "Got it!",
+  },
+
   // WhatsApp button
   whatsapp: {
     needHelp: "Need help booking?",

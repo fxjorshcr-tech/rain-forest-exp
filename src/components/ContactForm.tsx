@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { Send, MapPin, Phone, Mail, Clock, Loader2, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/i18n/context";
+import ThankYouModal from "@/components/ThankYouModal";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [showModal, setShowModal] = useState(false);
   const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,8 +31,8 @@ export default function ContactForm() {
       if (!res.ok) throw new Error("Failed to send");
 
       setStatus("sent");
+      setShowModal(true);
       form.reset();
-      setTimeout(() => setStatus("idle"), 5000);
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4000);
@@ -208,6 +210,15 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <ThankYouModal
+          onClose={() => {
+            setShowModal(false);
+            setStatus("idle");
+          }}
+        />
+      )}
     </section>
   );
 }

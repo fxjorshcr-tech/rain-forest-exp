@@ -366,6 +366,16 @@ export const es: typeof en = {
       "Aventuras personalizadas con un guia local certificado nacido y criado en La Fortuna. Grupos pequenos, equipo profesional y mas de 10 anos de experiencia compartiendo la magia del bosque lluvioso de Arenal. Elige tu favorito y vamos.",
   },
 
+  // Thank you modal
+  thankYouModal: {
+    title: "Gracias!",
+    messageEn:
+      "Thank you for writing to us! We will get back to you as soon as possible.",
+    messageEs:
+      "Gracias por escribirnos! Te responderemos lo antes posible.",
+    close: "Entendido!",
+  },
+
   // WhatsApp button
   whatsapp: {
     needHelp: "Necesitas ayuda para reservar?",

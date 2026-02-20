@@ -1,29 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Send, MapPin, Phone, Mail, Clock, Loader2, CheckCircle } from "lucide-react";
 import { tours } from "@/data/tours";
 import { useLanguage } from "@/i18n/context";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const name = data.get("name") as string;
-    const message = data.get("message") as string;
-    const tour = data.get("tour") as string;
 
-    const whatsappMsg = encodeURIComponent(
-      `Hello! My name is ${name}. I'm interested in: ${tour}. ${message}`
-    );
-    window.open(`https://wa.me/50685104507?text=${whatsappMsg}`, "_blank");
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    form.reset();
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message"),
+          tour: data.get("tour"),
+          date: data.get("date"),
+          guests: data.get("guests"),
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to send");
+
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -242,6 +257,7 @@ export default function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
+                    required
                     placeholder={t.contact.messagePlaceholder}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none transition-all text-sm text-gray-900 placeholder:text-gray-400 resize-none"
                   />
@@ -249,20 +265,28 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-forest-700 hover:bg-forest-600 text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2"
+                  disabled={status === "sending"}
+                  className="w-full bg-forest-700 hover:bg-forest-600 text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {submitted ? (
-                    t.contact.messageSent
+                  {status === "sending" ? (
+                    <>
+                      {t.contact.sendingBtn} <Loader2 size={18} className="animate-spin" />
+                    </>
+                  ) : status === "sent" ? (
+                    <>
+                      {t.contact.messageSent} <CheckCircle size={18} />
+                    </>
+                  ) : status === "error" ? (
+                    t.contact.errorMsg
                   ) : (
                     <>
-                      {t.contact.sendBtn}
-                      <Send size={18} />
+                      {t.contact.sendBtn} <Send size={18} />
                     </>
                   )}
                 </button>
 
                 <p className="text-center text-xs text-gray-400">
-                  {t.contact.whatsappNote}
+                  {t.contact.emailNote}
                 </p>
               </form>
             </div>

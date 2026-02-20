@@ -206,10 +206,12 @@ export const en = {
     message: "Message",
     messagePlaceholder:
       "Tell us about your trip plans, special requirements, or any questions...",
-    messageSent: "Message Sent! Redirecting to WhatsApp...",
+    messageSent: "Message Sent!",
     sendBtn: "Send Message",
-    whatsappNote:
-      "Your message will be sent via WhatsApp for a faster response.",
+    sendingBtn: "Sending...",
+    errorMsg: "Error sending message. Please try again.",
+    emailNote:
+      "We'll respond to your email within 24 hours.",
   },
 
   // La Fortuna section

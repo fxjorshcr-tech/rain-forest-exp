@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       .filter(Boolean)
       .join("");
 
-    const FROM_EMAIL = "Rain Forest Experiences CR <no-reply@send.rainforestexperiencescr.com>";
+    const FROM_EMAIL = "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>";
 
     // 1. Email to the business (notification of new inquiry)
     const { error: bizError } = await resend.emails.send({

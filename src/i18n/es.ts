@@ -214,10 +214,12 @@ export const es: typeof en = {
     message: "Mensaje",
     messagePlaceholder:
       "Cuentanos sobre tus planes de viaje, requerimientos especiales o cualquier pregunta...",
-    messageSent: "Mensaje Enviado! Redirigiendo a WhatsApp...",
+    messageSent: "Mensaje Enviado!",
     sendBtn: "Enviar Mensaje",
-    whatsappNote:
-      "Tu mensaje sera enviado via WhatsApp para una respuesta mas rapida.",
+    sendingBtn: "Enviando...",
+    errorMsg: "Error al enviar el mensaje. Intenta de nuevo.",
+    emailNote:
+      "Responderemos a tu correo en menos de 24 horas.",
   },
 
   // La Fortuna section

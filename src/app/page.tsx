@@ -5,12 +5,17 @@ import LaFortuna from "@/components/LaFortuna";
 import About from "@/components/About";
 import Inclusions from "@/components/Inclusions";
 import ContactForm from "@/components/ContactForm";
+import { getTours } from "@/data/tours";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const tours = await getTours();
+
   return (
     <>
       <Hero />
-      <Tours />
+      <Tours tours={tours} />
       <Inclusions />
       <LaFortuna />
       <About />

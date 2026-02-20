@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, Star, ChevronRight } from "lucide-react";
-import { tours } from "@/data/tours";
+import type { Tour } from "@/data/tours";
 import { useLanguage } from "@/i18n/context";
 
-export default function Tours() {
+export default function Tours({ tours }: { tours: Tour[] }) {
   const { t } = useLanguage();
 
   return (

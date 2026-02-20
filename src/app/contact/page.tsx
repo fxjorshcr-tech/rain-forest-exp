@@ -9,7 +9,7 @@ import ThankYouModal from "@/components/ThankYouModal";
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [showModal, setShowModal] = useState(false);
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +29,7 @@ export default function ContactPage() {
           tour: data.get("tour"),
           date: data.get("date"),
           guests: data.get("guests"),
+          locale,
         }),
       });
 

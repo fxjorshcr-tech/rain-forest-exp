@@ -8,7 +8,7 @@ import ThankYouModal from "@/components/ThankYouModal";
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [showModal, setShowModal] = useState(false);
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ export default function ContactForm() {
           name: data.get("name"),
           email: data.get("email"),
           message: data.get("message"),
+          locale,
         }),
       });
 

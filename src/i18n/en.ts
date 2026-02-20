@@ -361,10 +361,8 @@ export const en = {
   // Thank you modal
   thankYouModal: {
     title: "Thank You!",
-    messageEn:
+    message:
       "Thank you for writing to us! We will get back to you as soon as possible.",
-    messageEs:
-      "Gracias por escribirnos! Te responderemos lo antes posible.",
     close: "Got it!",
   },
 

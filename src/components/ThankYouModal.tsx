@@ -27,12 +27,9 @@ export default function ThankYouModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Body */}
-        <div className="p-8 text-center space-y-4">
+        <div className="p-8 text-center">
           <p className="text-gray-700 text-base leading-relaxed">
-            {t.thankYouModal.messageEn}
-          </p>
-          <p className="text-gray-500 text-sm leading-relaxed italic">
-            {t.thankYouModal.messageEs}
+            {t.thankYouModal.message}
           </p>
         </div>
 

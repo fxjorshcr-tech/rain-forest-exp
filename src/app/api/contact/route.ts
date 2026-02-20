@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     // 1. Email to the business (notification of new inquiry)
     await resend.emails.send({
-      from: "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>",
+      from: "Rain Forest Experiences CR <no-reply@send.rainforestexperiencescr.com>",
       to: [BUSINESS_EMAIL],
       subject: `New inquiry from ${name}`,
       html: `
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
 
     // 2. Confirmation email to the client
     await resend.emails.send({
-      from: "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>",
+      from: "Rain Forest Experiences CR <no-reply@send.rainforestexperiencescr.com>",
       to: [email],
       subject: "We received your message! — Rain Forest Experiences CR",
       html: `

@@ -52,7 +52,7 @@ export default function ToursPageContent({ tours }: { tours: Tour[] }) {
                   href={`/tours/${tour.slug}`}
                   className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                     <Image
                       src={tour.image}
                       alt={title}

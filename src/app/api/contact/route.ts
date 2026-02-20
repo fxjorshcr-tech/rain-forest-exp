@@ -25,9 +25,11 @@ export async function POST(request: Request) {
       .filter(Boolean)
       .join("");
 
+    const FROM_EMAIL = "Rain Forest Experiences CR <no-reply@send.rainforestexperiencescr.com>";
+
     // 1. Email to the business (notification of new inquiry)
-    await resend.emails.send({
-      from: "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>",
+    const { error: bizError } = await resend.emails.send({
+      from: FROM_EMAIL,
       to: [BUSINESS_EMAIL],
       subject: `New inquiry from ${name}`,
       html: `
@@ -51,9 +53,17 @@ export async function POST(request: Request) {
       `,
     });
 
+    if (bizError) {
+      console.error("Failed to send business email:", bizError);
+      return NextResponse.json(
+        { error: bizError.message },
+        { status: 500 }
+      );
+    }
+
     // 2. Confirmation email to the client
-    await resend.emails.send({
-      from: "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>",
+    const { error: clientError } = await resend.emails.send({
+      from: FROM_EMAIL,
       to: [email],
       subject: "We received your message! — Rain Forest Experiences CR",
       html: `
@@ -85,6 +95,10 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+
+    if (clientError) {
+      console.error("Failed to send client confirmation email:", clientError);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -92,15 +92,15 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                     month_caption: "flex justify-center items-center mb-2",
                     caption_label: "text-sm font-semibold text-gray-900",
                     nav: "flex items-center justify-between absolute inset-x-0 top-0 px-1",
-                    button_previous: "p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors",
-                    button_next: "p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors",
+                    button_previous: "p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors cursor-pointer",
+                    button_next: "p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors cursor-pointer",
                     weekdays: "grid grid-cols-7 mb-1",
                     weekday: "text-xs font-medium text-gray-400 text-center py-1",
                     weeks: "w-full",
                     week: "grid grid-cols-7",
                     day: "text-center p-0",
                     day_button:
-                      "w-9 h-9 mx-auto text-sm rounded-lg transition-all hover:bg-forest-50 hover:text-forest-700 font-medium",
+                      "w-9 h-9 mx-auto text-sm rounded-lg transition-all hover:bg-forest-50 hover:text-forest-700 font-medium cursor-pointer",
                     selected:
                       "!bg-forest-700 !text-white !rounded-lg !hover:bg-forest-600",
                     today: "font-bold text-forest-700",
@@ -138,7 +138,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                   <button
                     key={st}
                     onClick={() => setTime(st)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                       time === st
                         ? "bg-forest-700 text-white shadow-md shadow-forest-700/20"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -158,7 +158,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setAdults(Math.max(tour.minPeople, adults - 1))}
-                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors cursor-pointer"
                 >
                   -
                 </button>
@@ -167,7 +167,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                 </span>
                 <button
                   onClick={() => setAdults(adults + 1)}
-                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors cursor-pointer"
                 >
                   +
                 </button>
@@ -185,7 +185,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setChildren(Math.max(0, children - 1))}
-                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors cursor-pointer"
                 >
                   -
                 </button>
@@ -194,7 +194,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                 </span>
                 <button
                   onClick={() => setChildren(children + 1)}
-                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+                  className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors cursor-pointer"
                 >
                   +
                 </button>
@@ -215,7 +215,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                   if (selectedDate) setStep(2);
                 }}
                 disabled={!selectedDate}
-                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20"
+                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 cursor-pointer"
               >
                 {t.booking.continueTo}
               </button>
@@ -274,14 +274,14 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               <button
                 onClick={handleReserve}
                 disabled={!name || !email}
-                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2"
+                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Shield size={18} />
                 {t.booking.reserveNow} — ${total}
               </button>
               <button
                 onClick={() => setStep(1)}
-                className="w-full text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors"
+                className="w-full text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors cursor-pointer"
               >
                 {t.booking.backToDetails}
               </button>

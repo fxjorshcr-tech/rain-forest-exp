@@ -148,7 +148,7 @@ export default function TourDetailContent({
                     {locale === "es" ? "Fotos" : "Photos"}
                   </h2>
                   {/* Main carousel image */}
-                  <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-4 group/carousel">
+                  <div className="relative aspect-[4/3] sm:aspect-[16/9] max-h-[450px] rounded-xl overflow-hidden mb-4 group/carousel">
                     {gallery.map((img, i) => (
                       <Image
                         key={img}
@@ -187,7 +187,7 @@ export default function TourDetailContent({
                       <button
                         key={img}
                         onClick={() => setCurrentImg(i)}
-                        className={`relative w-20 h-14 flex-shrink-0 rounded-lg overflow-hidden transition-all ${
+                        className={`relative w-16 h-12 sm:w-20 sm:h-14 flex-shrink-0 rounded-lg overflow-hidden transition-all ${
                           i === currentImg
                             ? "ring-2 ring-forest-500 ring-offset-1 opacity-100"
                             : "opacity-60 hover:opacity-100"
@@ -341,7 +341,7 @@ export default function TourDetailContent({
                   href={`/tours/${ot.slug}`}
                   className="group relative rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-forest-400/10 transition-all duration-500 hover:-translate-y-1"
                 >
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative h-52 sm:h-60 md:h-72 overflow-hidden">
                     <Image
                       src={ot.image}
                       alt={otTitle}

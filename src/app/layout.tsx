@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { LanguageProvider } from "@/i18n/context";
 import JsonLd from "@/components/JsonLd";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const BASE_URL = "https://www.rainforestexperiencescr.com";
 
@@ -61,6 +62,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "whw1sFV6igmXfG1qpuidGbzxKDeozqYlzdcttd96K-o",
+  },
 };
 
 export default function RootLayout({
@@ -71,6 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
+        <GoogleAnalytics />
         <LanguageProvider>
           <JsonLd />
           <Navbar />

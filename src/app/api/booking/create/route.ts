@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Tilopay SDK/API endpoint for initializing payment sessions
-const TILOPAY_API_URL = "https://app.tilopay.com/api/v1/processSdk";
+const TILOPAY_BASE_URL = "https://app.tilopay.com/api/v1/";
 
 export async function POST(request: Request) {
   try {
@@ -76,81 +75,76 @@ export async function POST(request: Request) {
 
     const redirectUrl = `${baseUrl}/api/booking/callback?data=${encodedData}`;
 
-    // Call Tilopay API to create payment session
-    const tilopayBody = {
+    // Step 1: Login to Tilopay to get access token
+    const loginRes = await fetch(TILOPAY_BASE_URL + "login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        email: apiUser,
+        password: apiPassword,
+      }),
+    });
+
+    const loginData = await loginRes.json();
+
+    if (!loginData.access_token) {
+      console.error("Tilopay login failed:", loginData);
+      return NextResponse.json(
+        { error: "Payment authentication failed" },
+        { status: 500 }
+      );
+    }
+
+    // Step 2: Create payment with bearer token
+    const paymentBody = {
+      redirect: redirectUrl,
       key: apiKey,
-      user: apiUser,
-      password: apiPassword,
-      module: "payment",
       amount: Number(total).toFixed(2),
       currency: "USD",
-      orderNumber,
       billToFirstName: firstName,
       billToLastName: lastName,
-      billToEmail: email,
-      billToCountry: country,
-      billToTelephone: phone,
       billToAddress: "",
+      billToAddress2: "",
       billToCity: "",
       billToState: "",
       billToZipPostCode: "",
-      redirect: redirectUrl,
-      language: locale === "es" ? "es" : "en",
+      billToCountry: country || "",
+      billToTelephone: phone || "",
+      billToEmail: email,
+      orderNumber,
       capture: 1,
       subscription: 0,
+      platform: "nextjs-redirect",
+      lang: locale === "es" ? "es" : "en",
       hashVersion: "V2",
-      typeDni: 0,
-      dni: "",
     };
 
-    const tilopayRes = await fetch(TILOPAY_API_URL, {
+    const paymentRes = await fetch(TILOPAY_BASE_URL + "processPayment", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(tilopayBody),
+      headers: {
+        "Authorization": "bearer " + loginData.access_token,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify(paymentBody),
     });
 
-    const tilopayData = await tilopayRes.json();
+    const paymentData = await paymentRes.json();
 
-    // Tilopay returns type "200" for success
-    if (tilopayData.type === "200" || tilopayData.type === 200) {
-      // For redirect mode, Tilopay may provide a redirect URL
-      // If it returns session data (for SDK), we pass it back to the client
-      const paymentUrl =
-        tilopayData.url ||
-        tilopayData.redirect_url ||
-        tilopayData.redirectUrl ||
-        tilopayData.payment_url;
-
+    // Tilopay redirect returns type 100 with a URL to their payment form
+    if (paymentData.type === 100 || paymentData.type === "100") {
       return NextResponse.json({
-        redirectUrl: paymentUrl || null,
+        redirectUrl: paymentData.url,
         orderNumber,
-        tilopayToken: apiKey, // SDK needs this for client-side init
-        sessionData: {
-          uniqueIdtransaction: tilopayData.uniqueIdtransaction,
-          methods: tilopayData.methods,
-          test: tilopayData.test,
-        },
-        // Pass all data needed for SDK initialization on the client
-        sdkParams: {
-          amount: Number(total).toFixed(2),
-          currency: "USD",
-          orderNumber,
-          billToEmail: email,
-          billToFirstName: firstName,
-          billToLastName: lastName,
-          billToCountry: country,
-          billToTelephone: phone,
-          redirect: redirectUrl,
-          language: locale === "es" ? "es" : "en",
-          capture: 1,
-          subscription: 0,
-        },
       });
     }
 
-    console.error("Tilopay API error:", tilopayData);
+    console.error("Tilopay processPayment error:", paymentData);
     return NextResponse.json(
-      { error: tilopayData.message || tilopayData.error || "Payment creation failed" },
+      { error: paymentData.message || paymentData.error || "Payment creation failed" },
       { status: 500 }
     );
   } catch (error) {

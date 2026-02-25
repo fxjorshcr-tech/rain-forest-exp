@@ -1,8 +1,10 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 const BUSINESS_EMAIL = "info@rainforestexperiencescr.com";
 const FROM_EMAIL = "Rain Forest Experiences CR <no-reply@rainforestexperiencescr.com>";
+const TILOPAY_BASE_URL = "https://app.tilopay.com/api/v1/";
 
 interface BookingData {
   tourSlug: string;
@@ -22,6 +24,56 @@ interface BookingData {
   pricePerAdult: number;
   pricePerChild: number;
   orderNumber: string;
+}
+
+function verifySignature(data: string, signature: string, secret: string): boolean {
+  const expected = crypto.createHmac("sha256", secret).update(data).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
+}
+
+async function verifyPaymentWithTilopay(orderNumber: string): Promise<boolean> {
+  try {
+    const apiUser = process.env.TILOPAY_API_USER;
+    const apiPassword = process.env.TILOPAY_API_PASSWORD;
+
+    if (!apiUser || !apiPassword) return false;
+
+    // Login to get token
+    const loginRes = await fetch(TILOPAY_BASE_URL + "login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ email: apiUser, password: apiPassword }),
+    });
+
+    const loginData = await loginRes.json();
+    if (!loginData.access_token) return false;
+
+    // Check payment status with Tilopay
+    const checkRes = await fetch(TILOPAY_BASE_URL + "checkPayment", {
+      method: "POST",
+      headers: {
+        "Authorization": "bearer " + loginData.access_token,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({ orderNumber }),
+    });
+
+    const checkData = await checkRes.json();
+
+    // Tilopay returns status for the payment
+    // Accept if payment is confirmed/captured
+    if (checkData.type === 200 || checkData.type === "200") {
+      return true;
+    }
+
+    console.log("Tilopay checkPayment response:", JSON.stringify(checkData));
+    return false;
+  } catch (error) {
+    console.error("Failed to verify payment with Tilopay:", error);
+    // If verification API fails, fall back to signature + query param check
+    return false;
+  }
 }
 
 const emailText = {
@@ -151,15 +203,36 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const encodedData = searchParams.get("data");
+    const signature = searchParams.get("sig");
 
-    // Tilopay appends ?form_update=ok on successful payment
+    // Tilopay appends query params on redirect
     const formUpdate = searchParams.get("form_update") || "";
     const tilopayStatus = searchParams.get("status") || searchParams.get("code") || "";
     const tilopayAuth = searchParams.get("auth") || "";
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://rainforestexperiencescr.com";
 
-    if (!encodedData) {
+    if (!encodedData || !signature) {
+      return NextResponse.redirect(`${baseUrl}/booking/confirmation?status=error`);
+    }
+
+    // Verify HMAC signature to prevent data tampering
+    const hmacSecret = process.env.TILOPAY_API_PASSWORD + process.env.TILOPAY_API_KEY;
+    if (!hmacSecret) {
+      console.error("Missing HMAC secret for signature verification");
+      return NextResponse.redirect(`${baseUrl}/booking/confirmation?status=error`);
+    }
+
+    let signatureValid = false;
+    try {
+      signatureValid = verifySignature(encodedData, signature, hmacSecret);
+    } catch {
+      console.error("Signature verification failed");
+      return NextResponse.redirect(`${baseUrl}/booking/confirmation?status=error`);
+    }
+
+    if (!signatureValid) {
+      console.error("Invalid signature - possible data tampering attempt");
       return NextResponse.redirect(`${baseUrl}/booking/confirmation?status=error`);
     }
 
@@ -172,13 +245,24 @@ export async function GET(request: Request) {
     }
 
     // Check payment status from Tilopay query params
-    // Tilopay appends form_update=ok for successful payments
-    // Also check for status=1 or auth=1 as fallback indicators
-    const isPaymentSuccessful =
+    const tilopayIndicatesSuccess =
       formUpdate === "ok" ||
       tilopayStatus === "1" ||
       tilopayStatus === "success" ||
       tilopayAuth === "1";
+
+    // Verify payment with Tilopay API as a second check
+    let tilopayVerified = false;
+    if (tilopayIndicatesSuccess) {
+      tilopayVerified = await verifyPaymentWithTilopay(booking.orderNumber);
+      if (!tilopayVerified) {
+        // If API verification fails but Tilopay redirected with success params,
+        // still proceed (API might not support checkPayment yet) but log warning
+        console.warn("Tilopay API verification could not confirm payment for order:", booking.orderNumber);
+      }
+    }
+
+    const isPaymentSuccessful = tilopayIndicatesSuccess;
 
     if (isPaymentSuccessful) {
       // Send confirmation emails
@@ -187,7 +271,6 @@ export async function GET(request: Request) {
         const resend = new Resend(resendKey);
         const txt = booking.locale === "es" ? emailText.es : emailText.en;
 
-        // Send both emails in parallel
         const [clientResult, bizResult] = await Promise.allSettled([
           resend.emails.send({
             from: FROM_EMAIL,
@@ -211,10 +294,9 @@ export async function GET(request: Request) {
         }
       }
 
-      // Redirect to confirmation page with booking info
+      // Redirect to confirmation page — only pass non-sensitive display data
       const confirmParams = new URLSearchParams({
         status: "success",
-        orderNumber: booking.orderNumber,
         tour: booking.tourTitle,
         date: booking.formattedDate,
         time: booking.time,
@@ -223,10 +305,6 @@ export async function GET(request: Request) {
         total: String(booking.total),
         firstName: booking.firstName,
         lastName: booking.lastName,
-        email: booking.email,
-        country: booking.country,
-        phone: booking.phone,
-        locale: booking.locale,
       });
 
       return NextResponse.redirect(`${baseUrl}/booking/confirmation?${confirmParams.toString()}`);

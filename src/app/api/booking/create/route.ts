@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 const TILOPAY_BASE_URL = "https://app.tilopay.com/api/v1/";
+
+function signData(data: string, secret: string): string {
+  return crypto.createHmac("sha256", secret).update(data).digest("hex");
+}
 
 export async function POST(request: Request) {
   try {
@@ -44,11 +49,12 @@ export async function POST(request: Request) {
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://rainforestexperiencescr.com";
+    const hmacSecret = process.env.TILOPAY_API_PASSWORD + process.env.TILOPAY_API_KEY;
 
     // Generate unique order number
     const orderNumber = `RF-${Date.now()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
 
-    // Build the redirect URL with booking data encoded
+    // Build the redirect URL with booking data signed with HMAC
     const bookingData = {
       tourSlug,
       tourTitle,
@@ -69,11 +75,10 @@ export async function POST(request: Request) {
       orderNumber,
     };
 
-    const encodedData = encodeURIComponent(
-      Buffer.from(JSON.stringify(bookingData)).toString("base64")
-    );
+    const encodedData = Buffer.from(JSON.stringify(bookingData)).toString("base64");
+    const signature = signData(encodedData, hmacSecret);
 
-    const redirectUrl = `${baseUrl}/api/booking/callback?data=${encodedData}`;
+    const redirectUrl = `${baseUrl}/api/booking/callback?data=${encodeURIComponent(encodedData)}&sig=${signature}`;
 
     // Step 1: Login to Tilopay to get access token
     const loginRes = await fetch(TILOPAY_BASE_URL + "login", {

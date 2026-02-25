@@ -9,9 +9,6 @@ import {
   Calendar,
   Clock,
   Users,
-  Mail,
-  Phone,
-  Globe,
   User,
   ArrowLeft,
   TreePine,
@@ -35,9 +32,6 @@ function ConfirmationContent() {
   const total = searchParams.get("total") || "0";
   const firstName = searchParams.get("firstName") || "";
   const lastName = searchParams.get("lastName") || "";
-  const email = searchParams.get("email") || "";
-  const country = searchParams.get("country") || "";
-  const phone = searchParams.get("phone") || "";
   const tourSlug = searchParams.get("tourSlug") || "";
 
   const childrenNum = parseInt(children);
@@ -97,6 +91,16 @@ function ConfirmationContent() {
           </div>
 
           <div className="p-8 space-y-8">
+            {/* Greeting */}
+            {firstName && (
+              <div className="text-center">
+                <p className="text-lg text-gray-700">
+                  <User size={18} className="inline mr-2 text-forest-600" />
+                  {firstName} {lastName}
+                </p>
+              </div>
+            )}
+
             {/* Booking Details */}
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
@@ -139,48 +143,6 @@ function ConfirmationContent() {
                   <span className="font-semibold text-gray-900">{ct.total}</span>
                   <span className="text-2xl font-bold text-forest-700">${total}</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <User size={20} className="text-forest-600" />
-                {ct.contactInfo}
-              </h2>
-              <div className="bg-gray-50 rounded-xl p-5 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-gray-600">
-                    <User size={16} />
-                    {ct.name}
-                  </span>
-                  <span className="font-semibold text-gray-900">{firstName} {lastName}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-gray-600">
-                    <Mail size={16} />
-                    {ct.email}
-                  </span>
-                  <span className="font-semibold text-gray-900">{email}</span>
-                </div>
-                {phone && (
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-2 text-gray-600">
-                      <Phone size={16} />
-                      {ct.phone}
-                    </span>
-                    <span className="font-semibold text-gray-900">{phone}</span>
-                  </div>
-                )}
-                {country && (
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-2 text-gray-600">
-                      <Globe size={16} />
-                      {ct.country}
-                    </span>
-                    <span className="font-semibold text-gray-900">{country}</span>
-                  </div>
-                )}
               </div>
             </div>
 

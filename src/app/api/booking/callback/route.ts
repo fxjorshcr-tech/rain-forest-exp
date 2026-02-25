@@ -152,7 +152,8 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const encodedData = searchParams.get("data");
 
-    // Tilopay may pass back status-related params
+    // Tilopay appends ?form_update=ok on successful payment
+    const formUpdate = searchParams.get("form_update") || "";
     const tilopayStatus = searchParams.get("status") || searchParams.get("code") || "";
     const tilopayAuth = searchParams.get("auth") || "";
 
@@ -171,13 +172,13 @@ export async function GET(request: Request) {
     }
 
     // Check payment status from Tilopay query params
-    // Tilopay typically returns status codes: 1 = success, other = failed
+    // Tilopay appends form_update=ok for successful payments
+    // Also check for status=1 or auth=1 as fallback indicators
     const isPaymentSuccessful =
+      formUpdate === "ok" ||
       tilopayStatus === "1" ||
       tilopayStatus === "success" ||
-      tilopayAuth === "1" ||
-      // If no status params, check if we at least have the data (may vary by Tilopay config)
-      (!tilopayStatus && !tilopayAuth && encodedData);
+      tilopayAuth === "1";
 
     if (isPaymentSuccessful) {
       // Send confirmation emails

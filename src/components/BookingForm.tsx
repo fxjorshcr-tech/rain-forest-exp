@@ -1,20 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { Shield, Clock, Users, Check, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
+import { Shield, Clock, Users, Check, CalendarDays, ChevronLeft, ChevronRight, CreditCard, User, Mail, Phone, Globe } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 import { es as esLocale } from "date-fns/locale/es";
 import type { Tour } from "@/data/tours";
 import { useLanguage } from "@/i18n/context";
+
+const COUNTRIES = [
+  "United States", "Canada", "Costa Rica", "Mexico", "Guatemala", "Panama",
+  "Colombia", "Brazil", "Argentina", "Chile", "Peru", "Ecuador",
+  "United Kingdom", "Germany", "France", "Spain", "Italy", "Netherlands",
+  "Switzerland", "Australia", "New Zealand", "Japan", "South Korea",
+  "China", "India", "Israel", "South Africa", "Other",
+];
 
 export default function BookingForm({ tour }: { tour: Tour }) {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [time, setTime] = useState(tour.startTimes[0]);
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [step, setStep] = useState<1 | 2>(1);
+  const [country, setCountry] = useState("");
+  const [phone, setPhone] = useState("");
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
   const { t, locale } = useLanguage();
 
   const total = adults * tour.price + children * Math.round(tour.price * 0.5);
@@ -28,25 +41,59 @@ export default function BookingForm({ tour }: { tour: Tour }) {
       })
     : "";
 
-  const handleReserve = () => {
-    const msg = encodeURIComponent(
-      `${t.booking.whatsappMsg}\n\n` +
-        `${t.booking.tourLabel}: ${tour.title}\n` +
-        `${t.booking.dateLabel}: ${formattedDate}\n` +
-        `${t.booking.timeLabel}: ${time}\n` +
-        `${t.booking.adultsMsg}: ${adults} ($${tour.price})\n` +
-        `${t.booking.childrenMsg}: ${children} ($${Math.round(tour.price * 0.5)})\n` +
-        `${t.booking.totalMsg}: $${total}\n\n` +
-        `${t.booking.nameMsg}: ${name}\n` +
-        `${t.booking.emailMsg}: ${email}`
-    );
-    window.open(`https://wa.me/50685104507?text=${msg}`, "_blank");
+  const isoDate = selectedDate ? selectedDate.toISOString().split("T")[0] : "";
+
+  const handlePayment = async () => {
+    setIsProcessing(true);
+    setPaymentError("");
+
+    try {
+      const res = await fetch("/api/booking/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tourSlug: tour.slug,
+          tourTitle: tour.title,
+          date: isoDate,
+          formattedDate,
+          time,
+          adults,
+          children,
+          total,
+          firstName,
+          lastName,
+          email,
+          country,
+          phone,
+          locale,
+          pricePerAdult: tour.price,
+          pricePerChild: Math.round(tour.price * 0.5),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        setPaymentError(data.error || t.booking.paymentError);
+        setIsProcessing(false);
+        return;
+      }
+
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      }
+    } catch {
+      setPaymentError(t.booking.paymentError);
+      setIsProcessing(false);
+    }
   };
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const trustSignals = [t.booking.freeCancellation, t.booking.instantConfirmation, t.booking.secureBooking];
+
+  const isStep2Valid = firstName.trim() && lastName.trim() && email.trim() && country && phone.trim();
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden sticky top-28">
@@ -65,6 +112,29 @@ export default function BookingForm({ tour }: { tour: Tour }) {
             <Users size={14} />
             {tour.maxGroup}
           </span>
+        </div>
+        {/* Step indicator */}
+        <div className="mt-4 flex items-center gap-2">
+          {[1, 2, 3].map((s) => (
+            <div key={s} className="flex items-center gap-2">
+              <div
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                  step >= s
+                    ? "bg-white text-forest-900"
+                    : "bg-white/20 text-white/50"
+                }`}
+              >
+                {step > s ? <Check size={14} /> : s}
+              </div>
+              {s < 3 && (
+                <div
+                  className={`w-8 h-0.5 transition-all ${
+                    step > s ? "bg-white" : "bg-white/20"
+                  }`}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -221,9 +291,9 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               </button>
             </div>
           </>
-        ) : (
+        ) : step === 2 ? (
           <>
-            {/* Summary */}
+            {/* Summary of step 1 */}
             <div className="bg-forest-50 rounded-xl p-4 space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">{t.booking.date}</span>
@@ -242,23 +312,40 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               </div>
             </div>
 
-            {/* Name */}
+            {/* First Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                {t.booking.fullName}
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1.5">
+                <User size={14} className="text-forest-600" />
+                {t.booking.firstName}
               </label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={t.booking.yourName}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder={t.booking.firstNamePlaceholder}
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 placeholder:text-gray-400"
+              />
+            </div>
+
+            {/* Last Name */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1.5">
+                <User size={14} className="text-forest-600" />
+                {t.booking.lastName}
+              </label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder={t.booking.lastNamePlaceholder}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 placeholder:text-gray-400"
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1.5">
+                <Mail size={14} className="text-forest-600" />
                 {t.booking.email}
               </label>
               <input
@@ -270,20 +357,135 @@ export default function BookingForm({ tour }: { tour: Tour }) {
               />
             </div>
 
+            {/* Country */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1.5">
+                <Globe size={14} className="text-forest-600" />
+                {t.booking.country}
+              </label>
+              <select
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 bg-white cursor-pointer"
+              >
+                <option value="">{t.booking.countryPlaceholder}</option>
+                {COUNTRIES.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1.5">
+                <Phone size={14} className="text-forest-600" />
+                {t.booking.phone}
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={t.booking.phonePlaceholder}
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20 outline-none text-sm text-gray-900 placeholder:text-gray-400"
+              />
+            </div>
+
             <div className="space-y-3">
               <button
-                onClick={handleReserve}
-                disabled={!name || !email}
-                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2 cursor-pointer"
+                onClick={() => setStep(3)}
+                disabled={!isStep2Valid}
+                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 cursor-pointer"
               >
-                <Shield size={18} />
-                {t.booking.reserveNow} — ${total}
+                {t.booking.continueToPayment}
               </button>
               <button
                 onClick={() => setStep(1)}
                 className="w-full text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors cursor-pointer"
               >
                 {t.booking.backToDetails}
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Full booking summary */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-gray-900">{t.booking.bookingSummary}</h3>
+              <div className="bg-forest-50 rounded-xl p-4 space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.tourLabel}</span>
+                  <span className="font-medium text-gray-900 text-right max-w-[60%]">{tour.title}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.date}</span>
+                  <span className="font-medium text-gray-900">{formattedDate}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.time}</span>
+                  <span className="font-medium text-gray-900">{time}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">
+                    {adults} {adults > 1 ? t.booking.adultsLabel : t.booking.adult}
+                    {children > 0 && `, ${children} ${children > 1 ? t.booking.childrenLabel : t.booking.child}`}
+                  </span>
+                  <span className="font-bold text-gray-900">${total}</span>
+                </div>
+              </div>
+
+              <h3 className="text-sm font-semibold text-gray-900">{t.booking.yourInfo}</h3>
+              <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.firstName}</span>
+                  <span className="font-medium text-gray-900">{firstName} {lastName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.email}</span>
+                  <span className="font-medium text-gray-900">{email}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.country}</span>
+                  <span className="font-medium text-gray-900">{country}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">{t.booking.phone}</span>
+                  <span className="font-medium text-gray-900">{phone}</span>
+                </div>
+              </div>
+            </div>
+
+            {paymentError && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
+                {paymentError}
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <button
+                onClick={handlePayment}
+                disabled={isProcessing}
+                className="w-full bg-forest-700 hover:bg-forest-600 disabled:bg-forest-700/70 disabled:cursor-not-allowed text-white py-4 rounded-xl text-base font-semibold transition-all hover:shadow-lg hover:shadow-forest-600/20 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    {t.booking.processing}
+                  </>
+                ) : (
+                  <>
+                    <CreditCard size={18} />
+                    {t.booking.payNow} — ${total}
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => setStep(2)}
+                disabled={isProcessing}
+                className="w-full text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors cursor-pointer disabled:cursor-not-allowed"
+              >
+                {t.booking.backToInfo}
               </button>
             </div>
           </>

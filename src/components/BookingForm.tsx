@@ -96,7 +96,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
   const isStep2Valid = firstName.trim() && lastName.trim() && email.trim() && country && phone.trim();
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden sticky top-28">
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto">
       {/* Header */}
       <div className="bg-forest-900 text-white p-6">
         <div className="flex items-baseline gap-2">

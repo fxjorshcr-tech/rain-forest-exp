@@ -27,7 +27,6 @@ function ConfirmationContent() {
   const status = searchParams.get("status");
   const isSuccess = status === "success";
 
-  const orderNumber = searchParams.get("orderNumber") || "";
   const tour = searchParams.get("tour") || "";
   const date = searchParams.get("date") || "";
   const time = searchParams.get("time") || "";
@@ -98,14 +97,6 @@ function ConfirmationContent() {
           </div>
 
           <div className="p-8 space-y-8">
-            {/* Order Number */}
-            {orderNumber && (
-              <div className="text-center">
-                <span className="text-xs text-gray-500 uppercase tracking-wider">{ct.orderNumber}</span>
-                <p className="text-lg font-mono font-bold text-forest-700">{orderNumber}</p>
-              </div>
-            )}
-
             {/* Booking Details */}
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">

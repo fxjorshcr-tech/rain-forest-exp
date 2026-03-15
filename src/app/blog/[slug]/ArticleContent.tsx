@@ -43,6 +43,24 @@ export default function ArticleContent({
     article.relatedTours.includes(tour.slug)
   );
 
+  // Render inline formatting: **bold** and *italic*
+  const renderInline = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+    return parts.map((segment, i) => {
+      if (segment.startsWith("**") && segment.endsWith("**")) {
+        return (
+          <strong key={i} className="font-bold text-gray-900">
+            {segment.slice(2, -2)}
+          </strong>
+        );
+      }
+      if (segment.startsWith("*") && segment.endsWith("*")) {
+        return <em key={i}>{segment.slice(1, -1)}</em>;
+      }
+      return segment;
+    });
+  };
+
   // Parse markdown-like content into sections
   const renderContent = (text: string) => {
     const parts = text.split("\n\n");
@@ -58,6 +76,23 @@ export default function ArticleContent({
           </h2>
         );
       }
+      // Bullet list block (lines starting with • or - )
+      const lines = part.split("\n");
+      const isList = lines.every(
+        (l) => l.startsWith("• ") || l.startsWith("- ")
+      );
+      if (isList) {
+        return (
+          <ul
+            key={index}
+            className="list-disc list-inside space-y-2 mb-6 text-gray-600 leading-relaxed pl-2"
+          >
+            {lines.map((line, li) => (
+              <li key={li}>{renderInline(line.replace(/^[•\-]\s*/, ""))}</li>
+            ))}
+          </ul>
+        );
+      }
       // First paragraph is the subtitle/intro
       if (!subtitleRendered) {
         subtitleRendered = true;
@@ -66,13 +101,13 @@ export default function ArticleContent({
             key={index}
             className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 font-medium border-l-4 border-forest-500 pl-5 italic"
           >
-            {part}
+            {renderInline(part)}
           </p>
         );
       }
       return (
         <p key={index} className="text-gray-600 leading-relaxed mb-4">
-          {part}
+          {renderInline(part)}
         </p>
       );
     });

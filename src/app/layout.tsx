@@ -12,19 +12,22 @@ const BASE_URL = "https://www.rainforestexperiencescr.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Rain Forest Experiences CR | Tours en La Fortuna, Costa Rica",
-    template: "%s | Rain Forest Experiences CR",
+    default:
+      "Gabriel — Certified Naturalist Guide in La Fortuna | Personalized Tours in Costa Rica",
+    template: "%s | Gabriel · Rain Forest Experiences CR",
   },
   description:
-    "Discover the magic of Costa Rica's rainforest with personalized tours in La Fortuna. Night walks, sloth tours, volcano hikes, waterfall adventures and more with expert local guide Gabriel.",
+    "Gabriel is a certified naturalist guide based in La Fortuna, Costa Rica, with 13+ years of experience designing personalized rainforest, wildlife and Arenal Volcano tours for small groups.",
   keywords:
-    "La Fortuna tours, Costa Rica rainforest, night walk, sloth tour, Arenal volcano, hanging bridges, waterfall, nature tours, birdwatching, Rio Celeste, La Fortuna Costa Rica, tours en La Fortuna",
-  authors: [{ name: "Rain Forest Experiences CR" }],
-  creator: "Rain Forest Experiences CR",
+    "Gabriel naturalist guide, certified guide La Fortuna, personalized tours La Fortuna, private tours Arenal, Costa Rica naturalist guide, guía certificado La Fortuna, tours personalizados La Fortuna, guía naturalista Costa Rica, Arenal volcano guide, sloth tour La Fortuna, night walk La Fortuna, birdwatching guide Costa Rica",
+  authors: [{ name: "Gabriel — Rain Forest Experiences CR", url: BASE_URL }],
+  creator: "Gabriel — Rain Forest Experiences CR",
+  publisher: "Rain Forest Experiences CR",
   openGraph: {
-    title: "Rain Forest Experiences CR | Tours en La Fortuna, Costa Rica",
+    title:
+      "Gabriel — Certified Naturalist Guide in La Fortuna, Costa Rica",
     description:
-      "Personalized rainforest tours in La Fortuna, Costa Rica. Night walks, sloth tours, volcano hikes & more with expert naturalist guide Gabriel.",
+      "Personalized nature tours in La Fortuna led by Gabriel, a certified naturalist guide with 13+ years of experience. Small groups, local knowledge, real connection with the rainforest.",
     url: BASE_URL,
     siteName: "Rain Forest Experiences CR",
     locale: "en_US",
@@ -35,21 +38,26 @@ export const metadata: Metadata = {
         url: "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-mountains-sky-costa-rica.webp",
         width: 1200,
         height: 630,
-        alt: "Rain Forest Experiences CR — Tours in La Fortuna, Costa Rica",
+        alt: "Gabriel — Certified Naturalist Guide in La Fortuna, Costa Rica",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rain Forest Experiences CR | Tours en La Fortuna",
+    title: "Gabriel — Certified Naturalist Guide in La Fortuna",
     description:
-      "Personalized rainforest tours in La Fortuna, Costa Rica with expert naturalist guide Gabriel.",
+      "Personalized rainforest, wildlife and Arenal Volcano tours in La Fortuna with certified naturalist guide Gabriel.",
     images: [
       "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/arenal-volcano-mountains-sky-costa-rica.webp",
     ],
   },
   alternates: {
     canonical: BASE_URL,
+    languages: {
+      "en-US": BASE_URL,
+      "es-CR": BASE_URL,
+      "x-default": BASE_URL,
+    },
   },
   robots: {
     index: true,

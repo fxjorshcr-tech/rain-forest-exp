@@ -6,8 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/", "/booking/thank-you"],
       },
     ],
     sitemap: "https://www.rainforestexperiencescr.com/sitemap.xml",
+    host: "https://www.rainforestexperiencescr.com",
   };
 }

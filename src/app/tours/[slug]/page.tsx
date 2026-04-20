@@ -20,18 +20,25 @@ export async function generateMetadata({
   const { slug } = await params;
   const tour = await getTourBySlug(slug);
   if (!tour) return { title: "Tour Not Found" };
+  const url = `${BASE_URL}/tours/${tour.slug}`;
   return {
-    title: `${tour.title} | Rain Forest Experiences CR`,
-    description: tour.description,
+    title: `${tour.title} — Personalized Tour with Gabriel in La Fortuna`,
+    description: `${tour.description} Led by Gabriel, certified naturalist guide in La Fortuna, Costa Rica.`,
     openGraph: {
-      title: `${tour.title} | Rain Forest Experiences CR`,
+      title: `${tour.title} — Personalized Tour with Gabriel in La Fortuna`,
       description: tour.description,
-      url: `${BASE_URL}/tours/${tour.slug}`,
+      url,
       images: [{ url: tour.image, alt: tour.title }],
       type: "website",
+      siteName: "Rain Forest Experiences CR",
     },
     alternates: {
-      canonical: `${BASE_URL}/tours/${tour.slug}`,
+      canonical: url,
+      languages: {
+        "en-US": url,
+        "es-CR": url,
+        "x-default": url,
+      },
     },
   };
 }

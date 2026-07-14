@@ -554,4 +554,15 @@ export const en = {
     rights: "All rights reserved.",
     puraVida: "Pura Vida from La Fortuna, Costa Rica",
   },
+
+  // Error boundary / crash fallback
+  errorBoundary: {
+    title: "Something went wrong",
+    message:
+      "Sorry, an unexpected error occurred. Please try again — and if it keeps happening, you can reach us directly to book your tour.",
+    tryAgain: "Try again",
+    reload: "Reload page",
+    backToHome: "Back to home",
+    contactUs: "Or contact us directly:",
+  },
 } as const;

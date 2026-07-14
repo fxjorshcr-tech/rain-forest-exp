@@ -563,4 +563,15 @@ export const es: typeof en = {
     rights: "Todos los derechos reservados.",
     puraVida: "Pura Vida desde La Fortuna, Costa Rica",
   },
+
+  // Error boundary / crash fallback
+  errorBoundary: {
+    title: "Algo salio mal",
+    message:
+      "Lo sentimos, ocurrio un error inesperado. Por favor intenta de nuevo — y si el problema continua, puedes contactarnos directamente para reservar tu tour.",
+    tryAgain: "Intentar de nuevo",
+    reload: "Recargar pagina",
+    backToHome: "Volver al inicio",
+    contactUs: "O contactanos directamente:",
+  },
 } as const;

@@ -19,7 +19,8 @@ export default function BookingForm({ tour }: { tour: Tour }) {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [time, setTime] = useState(tour.startTimes[0]);
+  const startTimes = tour.startTimes ?? [];
+  const [time, setTime] = useState(startTimes[0] ?? "");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,7 +72,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok || data.error) {
         setPaymentError(data.error || t.booking.paymentError);
@@ -81,7 +82,13 @@ export default function BookingForm({ tour }: { tour: Tour }) {
 
       if (data.redirectUrl) {
         window.location.href = data.redirectUrl;
+        return;
       }
+
+      // Successful response but no redirect URL — surface an error instead of
+      // leaving the button spinning indefinitely.
+      setPaymentError(t.booking.paymentError);
+      setIsProcessing(false);
     } catch {
       setPaymentError(t.booking.paymentError);
       setIsProcessing(false);
@@ -204,7 +211,7 @@ export default function BookingForm({ tour }: { tour: Tour }) {
                 {t.booking.startTime}
               </label>
               <div className="flex flex-wrap gap-2">
-                {tour.startTimes.map((st) => (
+                {startTimes.map((st) => (
                   <button
                     key={st}
                     onClick={() => setTime(st)}

@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.rainforestexperiencescr.com",
+        pathname: "/images/**",
+      },
+      {
+        protocol: "https",
         hostname: "flagcdn.com",
         pathname: "/**",
       },

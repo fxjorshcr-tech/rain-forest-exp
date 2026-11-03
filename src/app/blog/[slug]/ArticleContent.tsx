@@ -76,6 +76,16 @@ export default function ArticleContent({
           </h2>
         );
       }
+      if (part.startsWith("### ")) {
+        return (
+          <h3
+            key={index}
+            className="text-xl font-bold text-gray-900 mt-8 mb-3"
+          >
+            {part.replace("### ", "")}
+          </h3>
+        );
+      }
       // Bullet list block (lines starting with • or - )
       const lines = part.split("\n");
       const isList = lines.every(

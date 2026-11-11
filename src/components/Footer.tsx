@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { tours } from "@/data/tours";
 import { useLanguage } from "@/i18n/context";
+import PoweredByMaxDigital from "@/components/PoweredByMaxDigital";
 
 const LOGO_URL =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Rain%20Forest%20Ex/rain-forest-exp-logo-trans.png";
@@ -175,6 +176,8 @@ export default function Footer() {
             </p>
           </div>
         </div>
+
+        <PoweredByMaxDigital className="mt-10" />
       </div>
     </footer>
   );

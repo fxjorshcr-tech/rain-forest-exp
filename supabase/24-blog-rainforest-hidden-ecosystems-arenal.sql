@@ -231,7 +231,7 @@ Creemos que las mejores experiencias en la naturaleza no siempre dependen de cu�
 ¿Estás listo para descubrir la selva tropical más allá de lo habitual? Acompáñanos en La Fortuna, Costa Rica, y descubre el fascinante mundo natural de Arenal.
 
 Rainforest Experiences CR: experiencias únicas en Costa Rica. Reservas y consultas por WhatsApp al +506 8510-4507 o en www.rainforestexperiencescr.com$txt$,
-  'https://www.rainforestexperiencescr.com/images/blog/rainforest-waterfall-arenal-costa-rica.webp',
+  'https://www.rainforestexperiencescr.com/images/blog/rainforest-waterfall-costa-rica.webp',
   '2026-11-22',
   7,
   ARRAY['hanging-bridges', 'night-walk', 'volcano-hike', 'best-of-arenal']
